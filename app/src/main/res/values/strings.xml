@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FbKeywordNotifier</string>
+    <string name="facebook_app_id">1422200391175307</string>
+    <string name="fb_login_protocol_scheme">fb1422200391175307</string> <!--required by chrome custom tabs-->
 </resources>

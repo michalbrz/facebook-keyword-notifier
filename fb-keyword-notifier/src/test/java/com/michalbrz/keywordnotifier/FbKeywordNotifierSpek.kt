@@ -13,12 +13,13 @@ class FbKeywordNotifierSpek: Spek({
 
             on("it publishes a post containing keyword y and state is synchronized") {
                     it("should notify ") {
-
+                        println("Shiat")
                     }
             }
 
             on("it publishes a post NOT containing keyword y and state is synchronized") {
                 it("should not notify") {
+                        println("Shiat2")
 
                 }
             }
