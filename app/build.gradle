@@ -29,7 +29,12 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile project(path: ':fb-keyword-notifier')
+
     testCompile 'junit:junit:4.12'
+
+    testCompile "com.nhaarman:mockito-kotlin:1.4.0"
 
     testCompile 'org.jetbrains.spek:spek-api:1.1.0'
     testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.1.0'
@@ -40,8 +45,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile project(path: ':fb-keyword-notifier')
 }
 repositories {
     mavenCentral()

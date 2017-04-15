@@ -1,8 +1,8 @@
 package com.michalbrz.fbnotifier
 
-import com.michalbrz.fbnotifier.model.Fanpage
+import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
 
 interface MainActivityView {
 
-    fun displayFanpages(fanpages: List<Fanpage>)
+    fun displayFanpages(fanpagesInfo: List<FanpageInfo>)
 }
