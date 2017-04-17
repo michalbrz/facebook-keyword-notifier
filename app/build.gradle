@@ -24,18 +24,18 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
+    compile project(path: ':fb-keyword-notifier')
+
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.orhanobut:logger:1.15'
 
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile project(path: ':fb-keyword-notifier')
 
     testCompile 'junit:junit:4.12'
 
     testCompile "com.nhaarman:mockito-kotlin:1.4.0"
-
     testCompile 'org.jetbrains.spek:spek-api:1.1.0'
     testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.1.0'
     testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M3'

@@ -6,7 +6,7 @@ class FacebookInfoRetrieverImpl(val facebookApiAdatper: FacebookApiAdapter) : Fa
     override fun getFanpagesInfo(fanpagesId: List<String>, fanpagesProcessor: FanpagesProcessor) {
 
         facebookApiAdatper.getJsonForPagesWithId(fanpagesId) {json ->
-            println(json)
+            Logger.json(json)
         }
     }
 }
