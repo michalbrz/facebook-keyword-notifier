@@ -1,8 +1,8 @@
 package com.michalbrz.fbnotifier
 
-import com.michalbrz.fbnotifier.model.Fanpage
-import com.michalbrz.fbnotifier.model.FanpageInfo
-import com.michalbrz.fbnotifier.model.Post
+import com.michalbrz.fbkeywordnotifier.model.Fanpage
+import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
+import com.michalbrz.fbkeywordnotifier.model.Post
 
 fun sampleFanpage(): Fanpage {
     return Fanpage(

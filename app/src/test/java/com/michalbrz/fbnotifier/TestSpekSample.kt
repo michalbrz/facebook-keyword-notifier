@@ -1,6 +1,7 @@
 package com.michalbrz.fbnotifier
 
-import com.michalbrz.fbnotifier.model.Fanpage
+import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
+import com.michalbrz.fbkeywordnotifier.model.Fanpage
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.verify
@@ -30,7 +31,7 @@ class someTest {
         captor.firstValue.invoke("some")
 
 
-        val facebookInfoRetriever = Mockito.mock(FacebookInfoRetriever::class.java)
+        val facebookInfoRetriever = Mockito.mock(com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever::class.java)
 
         facebookInfoRetriever.getFanpagesInfo(listOf(""), {fanpages -> println("DUPA")} )
 

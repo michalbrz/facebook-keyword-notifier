@@ -1,9 +1,11 @@
 package com.michalbrz.fbnotifier
 
+import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
+import com.michalbrz.fbkeywordnotifier.FanpagesProcessor
 import com.michalbrz.fbnotifier.DummyFanpagesStorage
 import com.michalbrz.fbnotifier.MainActivityPresenter
 import com.michalbrz.fbnotifier.MainActivityView
-import com.michalbrz.fbnotifier.model.Fanpage
+import com.michalbrz.fbkeywordnotifier.model.Fanpage
 import com.nhaarman.mockito_kotlin.*
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
@@ -18,7 +20,7 @@ class FbKeywordNotifierSpek: Spek({
     given("Presenter is created") {
 
         val mainActivityView = mock<MainActivityView>()
-        val facebookInfoRetriever = mock<FacebookInfoRetriever>()
+        val facebookInfoRetriever = mock<com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever>()
         val fanpagesStorage = DummyFanpagesStorage()
 
         val fanpages = listOf(sampleFanpage(), sampleFanpage())
@@ -49,7 +51,7 @@ class FbKeywordNotifierSpek: Spek({
 
 })
 
-private fun callFanpagesReadyCallback(facebookInfoRetriever: FacebookInfoRetriever, fanpages: List<Fanpage>, savedFanpagesId: List<String>) {
+private fun callFanpagesReadyCallback(facebookInfoRetriever: com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever, fanpages: List<Fanpage>, savedFanpagesId: List<String>) {
     doAnswer { invocation ->
         val fanpagesProcessor: FanpagesProcessor = invocation.arguments[1] as FanpagesProcessor
         fanpagesProcessor.invoke(fanpages)

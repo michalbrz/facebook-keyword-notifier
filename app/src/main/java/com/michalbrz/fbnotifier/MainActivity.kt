@@ -7,11 +7,13 @@ import android.util.Log
 import android.widget.Toast
 import com.facebook.*
 import com.facebook.login.LoginResult
+import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
+import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainActivityView {
 
-    val TAG = MainActivity::class.simpleName
+    val TAG = this.javaClass.simpleName
 
     private val callbackManager = CallbackManager.Factory.create()
 
@@ -23,9 +25,13 @@ class MainActivity : AppCompatActivity() {
         if (AccessToken.getCurrentAccessToken() != null) {
 //            fbLoginButton.visibility = View.GONE
         }
-
+        MainActivityPresenter(this, FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()), DummyFanpagesStorage())
         cardView
         veryRandomButton.setOnClickListener { callFacebookGraph() }
+    }
+
+    override fun displayFanpages(fanpagesInfo: List<FanpageInfo>) {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

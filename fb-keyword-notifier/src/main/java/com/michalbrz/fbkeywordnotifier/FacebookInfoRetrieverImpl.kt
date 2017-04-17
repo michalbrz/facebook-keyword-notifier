@@ -1,15 +1,12 @@
 package com.michalbrz.fbkeywordnotifier
 
-import android.util.Log
-import com.facebook.AccessToken
-import com.facebook.GraphRequest
 
-class FacebookInfoRetrieverImpl : FacebookInfoRetriever {
+class FacebookInfoRetrieverImpl(val facebookApiAdatper: FacebookApiAdapter) : FacebookInfoRetriever {
 
+    override fun getFanpagesInfo(fanpagesId: List<String>, fanpagesProcessor: FanpagesProcessor) {
 
-    override fun getFanpagesInfo(fanpagesId: List<String>, fanpagesProcessor: FanpagesProcessor) 
-
-    override fun doWithString(stringFunction: (String) -> Unit) {
-
+        facebookApiAdatper.getJsonForPagesWithId(fanpagesId) {json ->
+            println(json)
+        }
     }
 }
