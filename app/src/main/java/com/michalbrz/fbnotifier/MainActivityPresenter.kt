@@ -1,7 +1,5 @@
 package com.michalbrz.fbnotifier
 
-import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
-
 class MainActivityPresenter(val view: MainActivityView,
                             val facebookInfoRetriever: com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever,
                             val fanpagesStorage: FanpagesStorage) {
@@ -10,9 +8,7 @@ class MainActivityPresenter(val view: MainActivityView,
 
 
     init {
-        println("DUPA")
-        facebookInfoRetriever.getFanpagesInfo(favoriteFanpagesId) {
-            fanpages -> view.displayFanpages(fanpages.map { it.fanpageInfo }) }
+        facebookInfoRetriever.getFanpagesInfo(favoriteFanpagesId) { fanpagesInfo -> view.displayFanpages(fanpagesInfo) }
     }
 }
 

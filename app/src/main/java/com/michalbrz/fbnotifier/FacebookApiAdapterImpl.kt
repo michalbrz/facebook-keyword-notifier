@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
-import com.michalbrz.fbkeywordnotifier.FacebookApiAdapter
 
 class FacebookApiAdapterImpl : com.michalbrz.fbkeywordnotifier.FacebookApiAdapter {
     override fun getJsonForPagesWithId(fanpagesId: List<String>, jsonProcessor: (String) -> Unit) {
@@ -16,7 +15,7 @@ class FacebookApiAdapterImpl : com.michalbrz.fbkeywordnotifier.FacebookApiAdapte
                 })
         val parameters = Bundle()
         parameters.putString("ids", fanpagesId.joinToString(separator = ","))
-        parameters.putString("fields", "id,name,about,cover,fan_count")
+        parameters.putString("fields", "name,cover{source},fan_count")
         request.parameters = parameters
         request.executeAsync()
     }

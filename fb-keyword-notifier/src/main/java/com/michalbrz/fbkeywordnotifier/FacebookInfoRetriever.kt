@@ -1,11 +1,11 @@
 package com.michalbrz.fbkeywordnotifier
 
-import com.michalbrz.fbkeywordnotifier.model.Fanpage
+import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
 
 interface FacebookInfoRetriever {
 
-    fun getFanpagesInfo(fanpagesId: List<String>, fanpagesProcessor: (List<Fanpage>) -> Unit)
+    fun getFanpagesInfo(fanpagesId: List<String>, fanpagesProcessor: FanpagesInfoProcessor)
 }
 
-typealias FanpagesProcessor = (List<Fanpage>) -> Unit
+typealias FanpagesInfoProcessor = (List<FanpageInfo>) -> Unit
 

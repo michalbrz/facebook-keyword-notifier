@@ -1,7 +1,7 @@
 package com.michalbrz.fbnotifier
 
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
-import com.michalbrz.fbkeywordnotifier.FanpagesProcessor
+import com.michalbrz.fbkeywordnotifier.FanpagesInfoProcessor
 import com.michalbrz.fbnotifier.DummyFanpagesStorage
 import com.michalbrz.fbnotifier.MainActivityPresenter
 import com.michalbrz.fbnotifier.MainActivityView
@@ -53,7 +53,7 @@ class FbKeywordNotifierSpek: Spek({
 
 private fun callFanpagesReadyCallback(facebookInfoRetriever: com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever, fanpages: List<Fanpage>, savedFanpagesId: List<String>) {
     doAnswer { invocation ->
-        val fanpagesProcessor: FanpagesProcessor = invocation.arguments[1] as FanpagesProcessor
+        val fanpagesProcessor: FanpagesInfoProcessor = invocation.arguments[1] as FanpagesInfoProcessor
         fanpagesProcessor.invoke(fanpages)
         ""
     }.whenever(facebookInfoRetriever).getFanpagesInfo(eq(savedFanpagesId), any())

@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     }
 
     override fun displayFanpages(fanpagesInfo: List<FanpageInfo>) {
+
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
