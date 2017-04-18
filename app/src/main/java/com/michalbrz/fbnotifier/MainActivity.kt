@@ -3,9 +3,13 @@ package com.michalbrz.fbnotifier
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.Toast
-import com.facebook.*
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
 import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
@@ -17,22 +21,31 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
     private val callbackManager = CallbackManager.Factory.create()
 
+    private val fanpagesAdapter: FanpagesAdapter = FanpagesAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        centralTextView.text = "DUPA"
         registerCallbacks()
         if (AccessToken.getCurrentAccessToken() != null) {
 //            fbLoginButton.visibility = View.GONE
         }
         MainActivityPresenter(this, FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()), DummyFanpagesStorage())
-        cardView
-        veryRandomButton.setOnClickListener { callFacebookGraph() }
+
+        setUpFanpagesList()
+
+//        veryRandomButton.setOnClickListener { startActivity(Intent()) }
+    }
+
+    private fun setUpFanpagesList() {
+        fanpagesRecyclerView.setHasFixedSize(true)
+        fanpagesRecyclerView.layoutManager = LinearLayoutManager(this)
+        fanpagesRecyclerView.adapter = fanpagesAdapter
     }
 
     override fun displayFanpages(fanpagesInfo: List<FanpageInfo>) {
-
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        fanpagesAdapter.fanpages = fanpagesInfo
+        fanpagesAdapter.notifyDataSetChanged()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -64,28 +77,5 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
                 })
     }
-
-    private fun callFacebookGraph() {
-        centralTextView.text = Profile.getCurrentProfile().firstName
-//        Log.e(TAG, AccessToken.getCurrentAccessToken().toString())
-        val graphRequest = GraphRequest(AccessToken.getCurrentAccessToken(), "/me")
-        graphRequest.setCallback { graphResponse ->
-            centralTextView.append(graphResponse.rawResponse)
-            centralTextView.append(graphResponse.toString())
-        }
-        graphRequest.executeAsync()
-
-    }
-
-    private fun callSomething() {
-        Log.e(TAG, "calling facebook")
-        FacebookSdk.addLoggingBehavior(LoggingBehavior.REQUESTS)
-
-        val graphRequest = GraphRequest()
-        graphRequest.graphPath = "/me"
-        val executeAndWait = graphRequest.executeAndWait()
-        centralTextView.text = executeAndWait.rawResponse
-
-        Log.e(TAG, "called facebook")
-    }
 }
+

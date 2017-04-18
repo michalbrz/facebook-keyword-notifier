@@ -15,7 +15,8 @@ class FacebookApiAdapterImpl : com.michalbrz.fbkeywordnotifier.FacebookApiAdapte
                 })
         val parameters = Bundle()
         parameters.putString("ids", fanpagesId.joinToString(separator = ","))
-        parameters.putString("fields", "name,cover{source},fan_count")
+        parameters.putString("fields", "name,fan_count,picture{url}")
+        parameters.putString("type", "large")
         request.parameters = parameters
         request.executeAsync()
     }
