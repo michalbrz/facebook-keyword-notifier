@@ -2,5 +2,7 @@ package com.michalbrz.fbkeywordnotifier
 
 interface FacebookApiAdapter {
 
-    fun getJsonForPagesWithId(fanpagesId: List<String>, jsonProcessor: (String) -> Unit)
+    fun getJsonForPagesWithId(fanpagesId: List<String>, jsonProcessor: (String?) -> Unit)
+
+    fun getJsonForPostsWithFanpagesId(fanpagesId: List<String>, jsonProcessor: (String?) -> Unit)
 }

@@ -33,7 +33,7 @@ dependencies {
 
     compile project(path: ':fb-keyword-notifier')
 
-    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    compile 'com.facebook.android:facebook-android-sdk:4.21.1'
     compile 'com.orhanobut:logger:1.15'
     compile 'com.squareup.picasso:picasso:2.5.2'
 

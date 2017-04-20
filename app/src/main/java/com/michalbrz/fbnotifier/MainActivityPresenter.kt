@@ -1,7 +1,9 @@
 package com.michalbrz.fbnotifier
 
+import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
+
 class MainActivityPresenter(val view: MainActivityView,
-                            val facebookInfoRetriever: com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever,
+                            val facebookInfoRetriever: FacebookInfoRetriever,
                             val fanpagesStorage: FanpagesStorage) {
 
     val favoriteFanpagesId = fanpagesStorage.getFavoriteFanpagesId()

@@ -14,18 +14,13 @@ class FanpagesAdapter : RecyclerView.Adapter<FanpagesAdapter.FanpageViewHolder>(
 
     class FanpageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        init {
-            itemView.fanpageNameTextView
-        }
-
         fun bind(fanpageInfo: FanpageInfo) {
             with(itemView) {
                 fanpageNameTextView.text = fanpageInfo.name
                 fanpageLikesTextView.text = "${fanpageInfo.likes} likes"
-                Picasso.with(itemView.context).load(fanpageInfo.imageUrl).into(fanpagePhotoImageView)
+                Picasso.with(context).load(fanpageInfo.imageUrl).into(fanpagePhotoImageView)
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FanpageViewHolder {

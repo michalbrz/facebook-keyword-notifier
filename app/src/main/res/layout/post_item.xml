@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            >
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/fanpagePhotoInPostImageView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fanpageNameInPostTextView"
+                android:layout_toRightOf="@+id/fanpagePhotoInPostImageView"
+                android:layout_alignParentTop="true"
+                android:textSize="10sp"
+                tools:text="fanpage name"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/postContentTextView"
+                android:layout_toRightOf="@+id/fanpagePhotoInPostImageView"
+                android:layout_below="@+id/fanpageNameInPostTextView"
+                tools:text="post content"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/postDateTextView"
+                android:layout_toLeftOf="@+id/postContentTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/fanpagePhotoInPostImageView"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp"
+                tools:text="01.04 13:45"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.widget.Toast
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
         setUpFanpagesList()
 
-//        veryRandomButton.setOnClickListener { startActivity(Intent()) }
+        veryRandomButton.setOnClickListener { startActivity(Intent(this, PostsListActivity::class.java)) }
     }
 
     private fun setUpFanpagesList() {
@@ -56,25 +55,20 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     private fun registerCallbacks() {
         fbLoginButton.registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
-                    private fun toast(message: String) {
-                        Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
-                    }
-
                     override fun onSuccess(result: LoginResult?) {
-                        toast("Successfully logged with Facebook")
+                        this@MainActivity.toastWithMessage("Successfully logged with Facebook")
                         Log.i(TAG, "SUCCESS")
                     }
 
                     override fun onError(error: FacebookException?) {
-                        toast("Logging failed")
+                        this@MainActivity.toastWithMessage("Logging failed")
                         Log.e(TAG, "Logging failed: $error")
                     }
 
                     override fun onCancel() {
-                        toast("Logging cancelled")
+                        this@MainActivity.toastWithMessage("Logging cancelled")
                         Log.e(TAG, "CANCEL")
                     }
-
                 })
     }
 }
