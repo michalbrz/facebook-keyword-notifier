@@ -1,9 +1,13 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbnotifier.postslist
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
+import com.michalbrz.fbnotifier.DummyFanpagesStorage
+import com.michalbrz.fbnotifier.FacebookApiAdapterImpl
+import com.michalbrz.fbnotifier.R
+import com.michalbrz.fbnotifier.toastWithMessage
 import kotlinx.android.synthetic.main.activity_posts_list.*
 
 class PostsListActivity : AppCompatActivity(), PostsListActivityView {

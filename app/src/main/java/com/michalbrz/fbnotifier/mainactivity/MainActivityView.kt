@@ -1,4 +1,4 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbnotifier.mainactivity
 
 import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
 

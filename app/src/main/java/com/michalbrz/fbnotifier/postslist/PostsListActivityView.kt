@@ -1,4 +1,4 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbnotifier.postslist
 
 interface PostsListActivityView {
 

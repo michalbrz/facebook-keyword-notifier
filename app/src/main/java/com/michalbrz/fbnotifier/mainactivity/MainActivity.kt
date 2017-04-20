@@ -1,4 +1,4 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbnotifier.mainactivity
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,8 @@ import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
 import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
+import com.michalbrz.fbnotifier.*
+import com.michalbrz.fbnotifier.postslist.PostsListActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainActivityView {

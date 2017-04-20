@@ -3,8 +3,8 @@ package com.michalbrz.fbnotifier
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
 import com.michalbrz.fbkeywordnotifier.FanpagesInfoProcessor
 import com.michalbrz.fbnotifier.DummyFanpagesStorage
-import com.michalbrz.fbnotifier.MainActivityPresenter
-import com.michalbrz.fbnotifier.MainActivityView
+import com.michalbrz.fbnotifier.mainactivity.MainActivityPresenter
+import com.michalbrz.fbnotifier.mainactivity.MainActivityView
 import com.michalbrz.fbkeywordnotifier.model.Fanpage
 import com.nhaarman.mockito_kotlin.*
 import org.jetbrains.spek.api.Spek

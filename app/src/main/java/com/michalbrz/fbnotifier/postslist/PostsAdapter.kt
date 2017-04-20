@@ -1,4 +1,4 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbnotifier.postslist
 
 import android.content.Intent
 import android.net.Uri
@@ -7,7 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.michalbrz.fbnotifier.PostsAdapter.PostViewHolder
+import com.michalbrz.fbnotifier.R
+import com.michalbrz.fbnotifier.postslist.PostsAdapter.PostViewHolder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.post_item.view.*
 

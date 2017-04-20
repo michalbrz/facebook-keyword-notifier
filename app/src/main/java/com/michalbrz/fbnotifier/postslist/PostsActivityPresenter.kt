@@ -1,8 +1,9 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbnotifier.postslist
 
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
 import com.michalbrz.fbkeywordnotifier.model.Fanpage
 import com.michalbrz.fbkeywordnotifier.model.Post
+import com.michalbrz.fbnotifier.FanpagesStorage
 import java.text.SimpleDateFormat
 
 class PostsActivityPresenter(postsListActivityView: PostsListActivityView,
