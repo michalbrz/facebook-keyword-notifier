@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
-import com.michalbrz.fbnotifier.DummyFanpagesStorage
-import com.michalbrz.fbnotifier.FacebookApiAdapterImpl
-import com.michalbrz.fbnotifier.R
-import com.michalbrz.fbnotifier.toastWithMessage
+import com.michalbrz.fbnotifier.*
 import kotlinx.android.synthetic.main.activity_posts_list.*
 
 class PostsListActivity : AppCompatActivity(), PostsListActivityView {
@@ -20,7 +17,10 @@ class PostsListActivity : AppCompatActivity(), PostsListActivityView {
 
         postsRecyclerView.layoutManager = LinearLayoutManager(this)
         postsRecyclerView.adapter = postsAdapter
-        PostsActivityPresenter(this, FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()), DummyFanpagesStorage())
+        PostsActivityPresenter(this,
+                FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()),
+                DummyFanpagesStorage(),
+                DummyKeywordStorage())
     }
 
     override fun displayPosts(posts: List<PostViewModel>) {

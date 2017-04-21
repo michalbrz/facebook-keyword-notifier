@@ -1,8 +1,10 @@
 package com.michalbrz.fbnotifier.postslist
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.support.v4.content.ContextCompat.startActivity
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +15,14 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.post_item.view.*
 
 
-
-
 class PostsAdapter : RecyclerView.Adapter<PostViewHolder>() {
 
     var posts: List<PostViewModel> = emptyList()
 
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private val cardWithKeywordColor = Color.parseColor("#CBE4CB")
+
         fun bind(post: PostViewModel) {
             with(itemView) {
                 fanpageNameInPostTextView.text = post.fanpageName
@@ -30,6 +33,18 @@ class PostsAdapter : RecyclerView.Adapter<PostViewHolder>() {
                 setOnClickListener {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.url))
                     startActivity(context, intent, null)}
+
+                setCardBackgroundColor(post)
+            }
+        }
+
+        private fun setCardBackgroundColor(post: PostViewModel) {
+            with(itemView as CardView) {
+                if (post.hasKeyword) {
+                    setCardBackgroundColor(cardWithKeywordColor) // referencing xml color doesn't work
+                } else {
+                    setCardBackgroundColor(Color.WHITE)
+                }
             }
         }
 

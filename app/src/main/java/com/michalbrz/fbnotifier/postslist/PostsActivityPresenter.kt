@@ -4,11 +4,13 @@ import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
 import com.michalbrz.fbkeywordnotifier.model.Fanpage
 import com.michalbrz.fbkeywordnotifier.model.Post
 import com.michalbrz.fbnotifier.FanpagesStorage
+import com.michalbrz.fbnotifier.KeywordStorage
 import java.text.SimpleDateFormat
 
 class PostsActivityPresenter(postsListActivityView: PostsListActivityView,
                              facebookInfoRetrieverImpl: FacebookInfoRetriever,
-                             fanpagesStorage: FanpagesStorage) {
+                             fanpagesStorage: FanpagesStorage,
+                             val keywordStorage: KeywordStorage) {
 
     init {
         val favoriteFanpagesId = fanpagesStorage.getFavoriteFanpagesId()
@@ -30,7 +32,9 @@ class PostsActivityPresenter(postsListActivityView: PostsListActivityView,
 
     private fun toPostViewModel(fanpage: Fanpage, post: Post): PostViewModel {
         val dateAndTime = SimpleDateFormat("MM.dd HH:mm").format(post.time)
-        return PostViewModel(dateAndTime, post.text, post.postUrl, post.ImageUrl, fanpage.name, fanpage.pictureUrl)
+        val hasKeywords = keywordStorage.getKeywords()
+                .any { keyword -> post.text.toLowerCase().contains(keyword.toLowerCase()) }
+        return PostViewModel(dateAndTime, post.text, post.postUrl, post.ImageUrl, fanpage.name, fanpage.pictureUrl, hasKeywords)
     }
 }
 

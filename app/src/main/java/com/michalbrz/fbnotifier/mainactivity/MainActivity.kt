@@ -10,11 +10,16 @@ import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
+import com.firebase.jobdispatcher.Constraint
+import com.firebase.jobdispatcher.FirebaseJobDispatcher
+import com.firebase.jobdispatcher.GooglePlayDriver
+import com.firebase.jobdispatcher.Trigger
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
 import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
 import com.michalbrz.fbnotifier.*
 import com.michalbrz.fbnotifier.postslist.PostsListActivity
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity(), MainActivityView {
 
@@ -36,6 +41,22 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         setUpFanpagesList()
 
         veryRandomButton.setOnClickListener { startActivity(Intent(this, PostsListActivity::class.java)) }
+
+        val ONE_HOUR : Int = 60 * 60
+        val ONE_HOUR_TEN_MINUTES : Int = ONE_HOUR + 10 * 60
+        val dispatcher: FirebaseJobDispatcher = FirebaseJobDispatcher(GooglePlayDriver(this))
+
+        val myJob = dispatcher.newJobBuilder()
+                .setService(KeywordOccurrenceCheckService::class.java) // the JobService that will be called
+                .setTag("my-unique-tag")        // uniquely identifies the job
+                .setRecurring(true)
+                .setTrigger(Trigger.executionWindow(20,25))
+                .setConstraints(Constraint.ON_ANY_NETWORK)
+                .setReplaceCurrent(true)
+//                .setRetryStrategy(RetryStrategy.DEFAULT_LINEAR)
+                .build()
+        dispatcher.mustSchedule(myJob)
+        dispatcher.cancelAll()
     }
 
     private fun setUpFanpagesList() {

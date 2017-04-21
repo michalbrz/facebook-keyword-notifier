@@ -5,4 +5,5 @@ data class PostViewModel(val dateAndTime: String,
                          val url: String,
                          val ImageUrl: String,
                          val fanpageName: String,
-                         val fanpagePictureUrl: String)
+                         val fanpagePictureUrl: String,
+                         val hasKeyword: Boolean)
