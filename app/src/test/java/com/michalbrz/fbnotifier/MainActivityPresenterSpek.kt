@@ -2,10 +2,9 @@ package com.michalbrz.fbnotifier
 
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
 import com.michalbrz.fbkeywordnotifier.FanpagesInfoProcessor
-import com.michalbrz.fbnotifier.DummyFanpagesStorage
+import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
 import com.michalbrz.fbnotifier.mainactivity.MainActivityPresenter
 import com.michalbrz.fbnotifier.mainactivity.MainActivityView
-import com.michalbrz.fbkeywordnotifier.model.Fanpage
 import com.nhaarman.mockito_kotlin.*
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
@@ -20,13 +19,13 @@ class FbKeywordNotifierSpek: Spek({
     given("Presenter is created") {
 
         val mainActivityView = mock<MainActivityView>()
-        val facebookInfoRetriever = mock<com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever>()
+        val facebookInfoRetriever = mock<FacebookInfoRetriever>()
         val fanpagesStorage = DummyFanpagesStorage()
 
-        val fanpages = listOf(sampleFanpage(), sampleFanpage())
+        val fanpagesInfo = listOf(sampleFanpageInfo(), sampleFanpageInfo())
         val savedFanpagesId = fanpagesStorage.getFavoriteFanpagesId()
 
-        callFanpagesReadyCallback(facebookInfoRetriever, fanpages, savedFanpagesId)
+        callFanpagesReadyCallback(facebookInfoRetriever, fanpagesInfo, savedFanpagesId)
         val presenter = MainActivityPresenter(mainActivityView, facebookInfoRetriever, fanpagesStorage)
 
         it("should get info about saved fanpages") {
@@ -35,7 +34,7 @@ class FbKeywordNotifierSpek: Spek({
 
         context("fanpages info is downloaded") {
             it("should display fanpages info") {
-                verify(mainActivityView).displayFanpages(fanpages.map { it.fanpageInfo })
+                verify(mainActivityView).displayFanpages(fanpagesInfo)
             }
         }
 
@@ -51,10 +50,11 @@ class FbKeywordNotifierSpek: Spek({
 
 })
 
-private fun callFanpagesReadyCallback(facebookInfoRetriever: com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever, fanpages: List<Fanpage>, savedFanpagesId: List<String>) {
+private fun callFanpagesReadyCallback(facebookInfoRetriever: FacebookInfoRetriever, fanpagesInfo: List<FanpageInfo>,
+                                      savedFanpagesId: List<String>) {
     doAnswer { invocation ->
         val fanpagesProcessor: FanpagesInfoProcessor = invocation.arguments[1] as FanpagesInfoProcessor
-        fanpagesProcessor.invoke(fanpages)
+        fanpagesProcessor.invoke(fanpagesInfo)
         ""
     }.whenever(facebookInfoRetriever).getFanpagesInfo(eq(savedFanpagesId), any())
 }

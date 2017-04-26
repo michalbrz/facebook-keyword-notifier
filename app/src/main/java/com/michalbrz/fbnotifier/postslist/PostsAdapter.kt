@@ -61,4 +61,3 @@ class PostsAdapter : RecyclerView.Adapter<PostViewHolder>() {
 
     override fun getItemCount(): Int = posts.size
 }
-

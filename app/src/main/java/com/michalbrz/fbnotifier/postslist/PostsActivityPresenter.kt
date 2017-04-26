@@ -33,7 +33,7 @@ class PostsActivityPresenter(postsListActivityView: PostsListActivityView,
     private fun toPostViewModel(fanpage: Fanpage, post: Post): PostViewModel {
         val dateAndTime = SimpleDateFormat("MM.dd HH:mm").format(post.time)
         val hasKeywords = keywordStorage.getKeywords()
-                .any { keyword -> post.text.toLowerCase().contains(keyword.toLowerCase()) }
+                .any { keyword -> post.text.toLowerCase().contains(keyword) }
         return PostViewModel(dateAndTime, post.text, post.postUrl, post.ImageUrl, fanpage.name, fanpage.pictureUrl, hasKeywords)
     }
 }

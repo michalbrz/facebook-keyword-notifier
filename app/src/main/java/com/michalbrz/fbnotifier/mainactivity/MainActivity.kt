@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), MainActivityView {
                 .setReplaceCurrent(true)
 //                .setRetryStrategy(RetryStrategy.DEFAULT_LINEAR)
                 .build()
-        dispatcher.mustSchedule(myJob)
+//        dispatcher.mustSchedule(myJob)
         dispatcher.cancelAll()
     }
 
