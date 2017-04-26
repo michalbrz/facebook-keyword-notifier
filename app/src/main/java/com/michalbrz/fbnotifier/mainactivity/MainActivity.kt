@@ -42,21 +42,21 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
         veryRandomButton.setOnClickListener { startActivity(Intent(this, PostsListActivity::class.java)) }
 
-        val ONE_HOUR : Int = 60 * 60
-        val ONE_HOUR_TEN_MINUTES : Int = ONE_HOUR + 10 * 60
+        val ONE_HOUR: Int = 60 * 60
+        val ONE_HOUR_TEN_MINUTES: Int = ONE_HOUR + 10 * 60
         val dispatcher: FirebaseJobDispatcher = FirebaseJobDispatcher(GooglePlayDriver(this))
 
         val myJob = dispatcher.newJobBuilder()
-                .setService(KeywordOccurrenceCheckService::class.java) // the JobService that will be called
-                .setTag("my-unique-tag")        // uniquely identifies the job
+                .setService(KeywordOccurrenceCheckService::class.java)
+                .setTag("my-unique-tag")
                 .setRecurring(true)
-                .setTrigger(Trigger.executionWindow(20,25))
+                .setTrigger(Trigger.executionWindow(ONE_HOUR, ONE_HOUR_TEN_MINUTES))
                 .setConstraints(Constraint.ON_ANY_NETWORK)
                 .setReplaceCurrent(true)
-//                .setRetryStrategy(RetryStrategy.DEFAULT_LINEAR)
                 .build()
-//        dispatcher.mustSchedule(myJob)
-        dispatcher.cancelAll()
+        dispatcher.mustSchedule(myJob)
+
+        stopJobButton.setOnClickListener { dispatcher.cancelAll() }
     }
 
     private fun setUpFanpagesList() {

@@ -36,4 +36,13 @@
             app:layout_constraintTop_toBottomOf="@+id/veryRandomButton"
             app:layout_constraintBottom_toTopOf="@id/fbLoginButton"/>
 
+    <Button
+            android:text="Stop job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stopJobButton"
+            app:layout_constraintLeft_toRightOf="@+id/veryRandomButton"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="8dp"/>
+
 </android.support.constraint.ConstraintLayout>
