@@ -14,7 +14,7 @@ class FacebookApiAdapterImpl : com.michalbrz.fbkeywordnotifier.FacebookApiAdapte
                 })
         val parameters = Bundle()
         parameters.putString("ids", fanpagesId.joinToString(separator = ","))
-        parameters.putString("fields", "posts.limit(5){message,picture,created_time,id,permalink_url},picture{url}," +
+        parameters.putString("fields", "posts.limit(10){message,picture,created_time,id,permalink_url},picture{url}," +
                 "name")
         request.parameters = parameters
         request.executeAsync()

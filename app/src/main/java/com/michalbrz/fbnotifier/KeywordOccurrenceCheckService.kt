@@ -16,11 +16,12 @@ class KeywordOccurrenceCheckService : JobService() {
     override fun onStopJob(job: JobParameters?): Boolean = false
 
     override fun onStartJob(job: JobParameters?): Boolean {
-        Logger.error("MAGIC")
+        Logger.info("Facebook posts retrieval job started")
         val facebookInfoRetrieverImpl = FacebookInfoRetrieverImpl(FacebookApiAdapterImpl())
-        val keywordChecker = FacebookKeywordChecker(facebookInfoRetrieverImpl,
+        val keywordChecker = FacebookKeywordOccurence(facebookInfoRetrieverImpl,
                                                     DummyFanpagesStorage(),
-                                                    DummyKeywordStorage())
+                                                    DummyKeywordStorage(),
+                                                    ShownNotificationsStorageImpl(applicationContext))
         keywordChecker.ifKeywordOccuredInPosts { notificationMessages ->
             showNotification(notificationMessages)
 
@@ -33,7 +34,7 @@ class KeywordOccurrenceCheckService : JobService() {
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
 
-        val builder = android.support.v4.app.NotificationCompat.Builder(this)
+        val builder = NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setContentTitle("New post with keyword appeared!")
                 .setContentText(notificationMessages.first())

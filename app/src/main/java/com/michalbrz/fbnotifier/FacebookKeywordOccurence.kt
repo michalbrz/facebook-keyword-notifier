@@ -6,21 +6,29 @@ import com.michalbrz.fbkeywordnotifier.model.Post
 
 typealias NotificationMessages = List<String>
 
-class FacebookKeywordChecker(val facebookInfoRetriever: FacebookInfoRetriever,
-                             val fanpagesStorage: FanpagesStorage,
-                             val keywordStorage: KeywordStorage) {
+class FacebookKeywordOccurence(val facebookInfoRetriever: FacebookInfoRetriever,
+                               val fanpagesStorage: FanpagesStorage,
+                               val keywordStorage: KeywordStorage,
+                               val shownNotificationsStorage: ShownNotificationsStorage) {
     fun ifKeywordOccuredInPosts(notificationDisplay: (NotificationMessages) -> Unit) {
         facebookInfoRetriever.getPostsForFanpages(fanpagesStorage.getFavoriteFanpagesId()) { fanpages ->
             val keywords = keywordStorage.getKeywords()
+            val alreadyShownUrls = shownNotificationsStorage.getAlreadyShownUrls()
             val notificationsMessages = fanpages
                     .flatMap { fanpage -> fanpage.posts.map { it to fanpage } }
                     .filter { (post, _) -> postContainsKeyword(post, keywords) }
-                    .filter { (post, _) -> !wasAlreadyNotified(post) }
+                    .filter { (post, _) -> !wasAlreadyNotified(post, alreadyShownUrls) }
+                    .onEach { (post, _) -> setAsAlreadyNotified(post)}
                     .map { toNotificationMessage(it) }
             if (notificationsMessages.isNotEmpty()) {
+                println("invoked")
                 notificationDisplay.invoke(notificationsMessages)
             }
         }
+    }
+
+    private fun setAsAlreadyNotified(post: Post) {
+        shownNotificationsStorage.addAlreadyShownUrl(post.postUrl)
     }
 
     private fun toNotificationMessage(postWithFanpage: Pair<Post, Fanpage>): String {
@@ -29,8 +37,8 @@ class FacebookKeywordChecker(val facebookInfoRetriever: FacebookInfoRetriever,
         return "$fanpageName: $postMessage"
     }
 
-    private fun wasAlreadyNotified(post: Post): Boolean {
-        return false;
+    private fun wasAlreadyNotified(post: Post, alreadyShownUrls: Set<String>): Boolean {
+        return alreadyShownUrls.contains(post.postUrl)
     }
 
     private fun postContainsKeyword(post: Post, keywords: List<String>): Boolean {

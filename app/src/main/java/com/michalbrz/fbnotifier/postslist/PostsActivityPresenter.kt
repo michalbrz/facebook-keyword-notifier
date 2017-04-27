@@ -6,11 +6,14 @@ import com.michalbrz.fbkeywordnotifier.model.Post
 import com.michalbrz.fbnotifier.FanpagesStorage
 import com.michalbrz.fbnotifier.KeywordStorage
 import java.text.SimpleDateFormat
+import java.util.*
 
 class PostsActivityPresenter(postsListActivityView: PostsListActivityView,
                              facebookInfoRetrieverImpl: FacebookInfoRetriever,
                              fanpagesStorage: FanpagesStorage,
                              val keywordStorage: KeywordStorage) {
+
+    val cutOffDate:Date by lazy { Date(Date().time - 1000 * 60 * 60 * 36) } // 36 hours ago
 
     init {
         val favoriteFanpagesId = fanpagesStorage.getFavoriteFanpagesId()
@@ -18,23 +21,26 @@ class PostsActivityPresenter(postsListActivityView: PostsListActivityView,
             if (fanpages.isEmpty()) {
                 postsListActivityView.showToastWithMessage("Service temporarily unavailable")
             } else {
-                postsListActivityView.displayPosts(flattenToViewModel(fanpages))
+                postsListActivityView.displayPosts(flattenToViewModelAndFilter(fanpages))
             }
         }
     }
 
-    private fun flattenToViewModel(fanpages: List<Fanpage>) : List<PostViewModel> {
-        return fanpages.flatMap { fanpage ->
-                    fanpage.posts.map { post -> toPostViewModel(fanpage, post) } }
+    private fun flattenToViewModelAndFilter(fanpages: List<Fanpage>) : List<PostViewModel> {
+        return fanpages
+                .flatMap { fanpage -> fanpage.posts.map { post -> toPostViewModelWithDate(fanpage, post) } }
+                .filter { (post, date) -> date.after(cutOffDate) }
+                .map { it.first }
                 .sortedByDescending { it.dateAndTime }
                 .toList()
     }
 
-    private fun toPostViewModel(fanpage: Fanpage, post: Post): PostViewModel {
+    private fun toPostViewModelWithDate(fanpage: Fanpage, post: Post): Pair<PostViewModel, Date> {
         val dateAndTime = SimpleDateFormat("MM.dd HH:mm").format(post.time)
         val hasKeywords = keywordStorage.getKeywords()
                 .any { keyword -> post.text.toLowerCase().contains(keyword) }
-        return PostViewModel(dateAndTime, post.text, post.postUrl, post.ImageUrl, fanpage.name, fanpage.pictureUrl, hasKeywords)
+        val postViewModel = PostViewModel(dateAndTime, post.text, post.postUrl, post.ImageUrl, fanpage.name, fanpage.pictureUrl, hasKeywords)
+        return postViewModel to post.time
     }
 }
 

@@ -19,11 +19,12 @@ import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
 import com.michalbrz.fbnotifier.*
 import com.michalbrz.fbnotifier.postslist.PostsListActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.Calendar.HOUR
 
 
 class MainActivity : AppCompatActivity(), MainActivityView {
 
-    val TAG = this.javaClass.simpleName
+    val TAG: String = this.javaClass.simpleName
 
     private val callbackManager = CallbackManager.Factory.create()
 
@@ -42,10 +43,16 @@ class MainActivity : AppCompatActivity(), MainActivityView {
 
         veryRandomButton.setOnClickListener { startActivity(Intent(this, PostsListActivity::class.java)) }
 
+        val dispatcher: FirebaseJobDispatcher = FirebaseJobDispatcher(GooglePlayDriver(this))
+        schedulePostPollingJob(dispatcher)
+
+        stopJobButton.setOnClickListener { dispatcher.cancelAll() }
+    }
+
+    private fun schedulePostPollingJob(dispatcher: FirebaseJobDispatcher) {
+        HOUR
         val ONE_HOUR: Int = 60 * 60
         val ONE_HOUR_TEN_MINUTES: Int = ONE_HOUR + 10 * 60
-        val dispatcher: FirebaseJobDispatcher = FirebaseJobDispatcher(GooglePlayDriver(this))
-
         val myJob = dispatcher.newJobBuilder()
                 .setService(KeywordOccurrenceCheckService::class.java)
                 .setTag("my-unique-tag")
@@ -55,8 +62,6 @@ class MainActivity : AppCompatActivity(), MainActivityView {
                 .setReplaceCurrent(true)
                 .build()
         dispatcher.mustSchedule(myJob)
-
-        stopJobButton.setOnClickListener { dispatcher.cancelAll() }
     }
 
     private fun setUpFanpagesList() {

@@ -11,7 +11,8 @@ class MainActivityPresenter(val view: MainActivityView,
 
 
     init {
-        facebookInfoRetriever.getFanpagesInfo(favoriteFanpagesId) { fanpagesInfo -> view.displayFanpages(fanpagesInfo) }
+        facebookInfoRetriever.getFanpagesInfo(favoriteFanpagesId) {
+            fanpagesInfo -> view.displayFanpages(fanpagesInfo) }
     }
 }
 

@@ -6,15 +6,12 @@ class DummyKeywordStorage : KeywordStorage {
         return listOf("Puerto Rico",
                 "Indonesia",
                 "Indonezj",
-                "Hong-Kong",
-                "Hongkong",
                 "Malaysia",
                 "Malezj",
                 "Kuala Lumpur",
                 "Bali",
                 "Sinagapore",
                 "Costa Rica",
-                "Kuba",
                 "Singapur").map { it.toLowerCase() }
     }
 }
