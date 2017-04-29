@@ -4,6 +4,9 @@ buildscript {
     ext.kotlin_version = '1.1.1'
     repositories {
         jcenter()
+        maven {
+            url  "http://dl.bintray.com/arturbosch/code-analysis"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.1'
@@ -21,9 +24,30 @@ allprojects {
     }
 }
 
+configurations {
+    detekt
+}
+
+task detekt(type: JavaExec) {
+    main = "io.gitlab.arturbosch.detekt.cli.Main"
+    classpath = configurations.detekt
+    def input = "$project.projectDir.absolutePath"
+    def config = "$project.projectDir/detekt.yml"
+    def filters = ".*test.*"
+    def rulesets = ""
+    def params = [ '-p', input, '-c', config, '-f', filters, '-r', rulesets]
+    args(params)
+}
+
 repositories {
     mavenCentral()
+    maven {
+        url  "http://dl.bintray.com/arturbosch/code-analysis"
+    }
 }
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    detekt 'io.gitlab.arturbosch.detekt:detekt-cli:1.0.0.M8'
+    detekt 'io.gitlab.arturbosch.detekt:detekt-formatting:1.0.0.M8'
 }

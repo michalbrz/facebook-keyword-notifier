@@ -1,7 +1,7 @@
 package com.michalbrz.fbnotifier
 
 import android.app.Application
-import com.michalbrz.fbkeywordnotifier.Logger
+import com.michalbrz.fbkeywordnotifier.logger.Logger
 
 class MyApplication : Application() {
 

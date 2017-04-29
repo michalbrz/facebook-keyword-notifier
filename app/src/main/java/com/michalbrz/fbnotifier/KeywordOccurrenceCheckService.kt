@@ -7,9 +7,8 @@ import android.support.v4.app.NotificationCompat
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
-import com.michalbrz.fbkeywordnotifier.Logger
+import com.michalbrz.fbkeywordnotifier.logger.Logger
 import com.michalbrz.fbnotifier.postslist.PostsListActivity
-
 
 class KeywordOccurrenceCheckService : JobService() {
 
@@ -32,7 +31,6 @@ class KeywordOccurrenceCheckService : JobService() {
     fun showNotification(notificationMessages: NotificationMessages) {
         val notificationIntent = Intent(this, PostsListActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
 
         val builder = NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher_round)

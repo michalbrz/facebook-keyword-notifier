@@ -9,7 +9,6 @@ class MainActivityPresenter(val view: MainActivityView,
 
     val favoriteFanpagesId = fanpagesStorage.getFavoriteFanpagesId()
 
-
     init {
         facebookInfoRetriever.getFanpagesInfo(favoriteFanpagesId) {
             fanpagesInfo -> view.displayFanpages(fanpagesInfo) }

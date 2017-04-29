@@ -3,6 +3,7 @@ package com.michalbrz.fbnotifier
 import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldBeEmpty
 import org.amshove.kluent.shouldContain
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -14,8 +15,11 @@ import org.robolectric.annotation.Config
 @Config(constants = BuildConfig::class)
 class ShownNotificationsStorageImplTest {
 
-    val shownNotificationsStorage: ShownNotificationsStorage by lazy {
-        ShownNotificationsStorageImpl(RuntimeEnvironment.application)
+    lateinit var shownNotificationsStorage: ShownNotificationsStorage
+
+    @Before
+    fun before() {
+        shownNotificationsStorage = ShownNotificationsStorageImpl(RuntimeEnvironment.application)
     }
 
     @Test

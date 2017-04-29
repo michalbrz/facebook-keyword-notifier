@@ -1,6 +1,6 @@
 package com.michalbrz.fbnotifier
 
-import com.michalbrz.fbkeywordnotifier.ILogger
+import com.michalbrz.fbkeywordnotifier.logger.ILogger
 import com.orhanobut.logger.Logger
 
 class AndroidLogger : ILogger {

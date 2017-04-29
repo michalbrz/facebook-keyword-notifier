@@ -13,7 +13,7 @@ class PostsActivityPresenter(postsListActivityView: PostsListActivityView,
                              fanpagesStorage: FanpagesStorage,
                              val keywordStorage: KeywordStorage) {
 
-    val cutOffDate:Date by lazy { Date(Date().time - 1000 * 60 * 60 * 36) } // 36 hours ago
+    val cutOffDate: Date by lazy { Date(Date().time - 1000 * 60 * 60 * 36) } // 36 hours ago
 
     init {
         val favoriteFanpagesId = fanpagesStorage.getFavoriteFanpagesId()

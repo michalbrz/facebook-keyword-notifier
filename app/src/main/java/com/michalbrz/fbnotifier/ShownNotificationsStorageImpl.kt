@@ -6,9 +6,11 @@ import android.preference.PreferenceManager
 
 class ShownNotificationsStorageImpl(context: Context) : ShownNotificationsStorage {
 
-    val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    companion object {
+        val URLS_KEY = "URLS KEY"
+    }
 
-    val URLS_KEY = "URLS KEY"
+    val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     override fun getAlreadyShownUrls(): Set<String> {
         return preferences.getStringSet(URLS_KEY, emptySet())
@@ -22,7 +24,6 @@ class ShownNotificationsStorageImpl(context: Context) : ShownNotificationsStorag
         editor.apply()
 
     }
-
 
 }
 

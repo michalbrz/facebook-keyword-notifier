@@ -18,7 +18,7 @@ class FacebookKeywordOccurence(val facebookInfoRetriever: FacebookInfoRetriever,
                     .flatMap { fanpage -> fanpage.posts.map { it to fanpage } }
                     .filter { (post, _) -> postContainsKeyword(post, keywords) }
                     .filter { (post, _) -> !wasAlreadyNotified(post, alreadyShownUrls) }
-                    .onEach { (post, _) -> setAsAlreadyNotified(post)}
+                    .onEach { (post, _) -> setAsAlreadyNotified(post) }
                     .map { toNotificationMessage(it) }
             if (notificationsMessages.isNotEmpty()) {
                 println("invoked")

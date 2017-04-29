@@ -8,7 +8,7 @@ import java.util.*
 data class FanpageJson (val posts: PostsDataJson,
                         val picture: PictureJson,
                         val name: String) {
-    fun toFanpage() = Fanpage(name, picture.data.url, posts.data.map {  it.toPost()})
+    fun toFanpage() = Fanpage(name, picture.data.url, posts.data.map { it.toPost() })
 }
 
 data class PostsDataJson(val data: List<PostJson>, val paging: PagingInfoJson)

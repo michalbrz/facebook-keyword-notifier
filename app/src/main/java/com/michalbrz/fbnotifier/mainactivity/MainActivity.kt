@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -19,8 +18,6 @@ import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
 import com.michalbrz.fbnotifier.*
 import com.michalbrz.fbnotifier.postslist.PostsListActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.Calendar.HOUR
-
 
 class MainActivity : AppCompatActivity(), MainActivityView {
 
@@ -34,9 +31,9 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         registerCallbacks()
-        if (AccessToken.getCurrentAccessToken() != null) {
+//        if (AccessToken.getCurrentAccessToken() != null) {
 //            fbLoginButton.visibility = View.GONE
-        }
+//        }
         MainActivityPresenter(this, FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()), DummyFanpagesStorage())
 
         setUpFanpagesList()
@@ -50,14 +47,13 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     }
 
     private fun schedulePostPollingJob(dispatcher: FirebaseJobDispatcher) {
-        HOUR
-        val ONE_HOUR: Int = 60 * 60
-        val ONE_HOUR_TEN_MINUTES: Int = ONE_HOUR + 10 * 60
+        val oneHour: Int = 60 * 60
+        val oneHourTenMinutes: Int = oneHour + 10 * 60
         val myJob = dispatcher.newJobBuilder()
                 .setService(KeywordOccurrenceCheckService::class.java)
                 .setTag("my-unique-tag")
                 .setRecurring(true)
-                .setTrigger(Trigger.executionWindow(ONE_HOUR, ONE_HOUR_TEN_MINUTES))
+                .setTrigger(Trigger.executionWindow(oneHour, oneHourTenMinutes))
                 .setConstraints(Constraint.ON_ANY_NETWORK)
                 .setReplaceCurrent(true)
                 .build()

@@ -14,7 +14,6 @@ import com.michalbrz.fbnotifier.postslist.PostsAdapter.PostViewHolder
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.post_item.view.*
 
-
 class PostsAdapter : RecyclerView.Adapter<PostViewHolder>() {
 
     var posts: List<PostViewModel> = emptyList()
@@ -32,7 +31,7 @@ class PostsAdapter : RecyclerView.Adapter<PostViewHolder>() {
 
                 setOnClickListener {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.url))
-                    startActivity(context, intent, null)}
+                    startActivity(context, intent, null) }
 
                 setCardBackgroundColor(post)
             }

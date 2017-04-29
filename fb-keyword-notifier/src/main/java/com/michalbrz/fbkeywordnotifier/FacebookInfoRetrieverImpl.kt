@@ -3,8 +3,8 @@ package com.michalbrz.fbkeywordnotifier
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.michalbrz.fbkeywordnotifier.logger.Logger
 import com.michalbrz.fbkeywordnotifier.model.FanpageJson
-
 
 class FacebookInfoRetrieverImpl(val facebookApiAdatper: FacebookApiAdapter) : FacebookInfoRetriever {
 
