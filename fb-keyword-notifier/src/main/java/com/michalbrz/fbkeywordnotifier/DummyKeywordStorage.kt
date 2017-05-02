@@ -10,8 +10,6 @@ class DummyKeywordStorage : KeywordStorage {
                 "Malezj",
                 "Kuala Lumpur",
                 "Bali",
-                "Sinagapore",
-                "Costa Rica",
-                "Singapur").map { it.toLowerCase() }
+                "Singap").map { it.toLowerCase() }
     }
 }
