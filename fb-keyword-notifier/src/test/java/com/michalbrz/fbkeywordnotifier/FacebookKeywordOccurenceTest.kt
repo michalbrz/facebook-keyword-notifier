@@ -3,6 +3,7 @@ package com.michalbrz.fbkeywordnotifier
 import com.michalbrz.fbkeywordnotifier.model.Fanpage
 import com.michalbrz.fbkeywordnotifier.model.Post
 import com.nhaarman.mockito_kotlin.*
+import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
