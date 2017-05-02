@@ -1,4 +1,4 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbkeywordnotifier
 
 interface KeywordStorage {
     fun getKeywords() : List<String>

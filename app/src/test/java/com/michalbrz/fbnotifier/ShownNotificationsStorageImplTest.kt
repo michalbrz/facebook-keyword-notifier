@@ -1,5 +1,6 @@
 package com.michalbrz.fbnotifier
 
+import com.michalbrz.fbkeywordnotifier.ShownNotificationsStorage
 import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldBeEmpty
 import org.amshove.kluent.shouldContain

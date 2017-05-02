@@ -1,6 +1,5 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbkeywordnotifier
 
-import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
 import com.michalbrz.fbkeywordnotifier.model.Fanpage
 import com.michalbrz.fbkeywordnotifier.model.Post
 

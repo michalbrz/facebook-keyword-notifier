@@ -3,8 +3,8 @@ package com.michalbrz.fbnotifier.postslist
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
 import com.michalbrz.fbkeywordnotifier.model.Fanpage
 import com.michalbrz.fbkeywordnotifier.model.Post
-import com.michalbrz.fbnotifier.FanpagesStorage
-import com.michalbrz.fbnotifier.KeywordStorage
+import com.michalbrz.fbkeywordnotifier.FanpagesStorage
+import com.michalbrz.fbkeywordnotifier.KeywordStorage
 import java.text.SimpleDateFormat
 import java.util.*
 

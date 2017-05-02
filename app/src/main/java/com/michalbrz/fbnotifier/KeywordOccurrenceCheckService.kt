@@ -6,7 +6,10 @@ import android.content.Intent
 import android.support.v4.app.NotificationCompat
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService
+import com.michalbrz.fbkeywordnotifier.DummyFanpagesStorage
+import com.michalbrz.fbkeywordnotifier.DummyKeywordStorage
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
+import com.michalbrz.fbkeywordnotifier.FacebookKeywordOccurence
 import com.michalbrz.fbkeywordnotifier.logger.Logger
 import com.michalbrz.fbnotifier.postslist.PostsListActivity
 

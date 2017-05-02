@@ -13,6 +13,7 @@ import com.firebase.jobdispatcher.Constraint
 import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
 import com.firebase.jobdispatcher.Trigger
+import com.michalbrz.fbkeywordnotifier.DummyFanpagesStorage
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
 import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
 import com.michalbrz.fbnotifier.*

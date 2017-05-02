@@ -1,6 +1,8 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbkeywordnotifier
 
-class DummyFanpagesStorage : FanpagesStorage {
+import com.michalbrz.fbkeywordnotifier.FanpagesStorage
+
+class DummyFanpagesStorage : com.michalbrz.fbkeywordnotifier.FanpagesStorage {
     override fun getFavoriteFanpagesId(): List<String> {
         return listOf(
                 "796474383697246", //fly4free europe

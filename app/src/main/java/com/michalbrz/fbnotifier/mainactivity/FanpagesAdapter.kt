@@ -1,10 +1,11 @@
-package com.michalbrz.fbnotifier
+package com.michalbrz.fbnotifier.mainactivity
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
+import com.michalbrz.fbnotifier.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fanpage_item.view.*
 
