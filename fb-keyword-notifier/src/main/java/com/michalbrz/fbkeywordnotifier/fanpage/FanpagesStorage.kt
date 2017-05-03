@@ -1,4 +1,4 @@
-package com.michalbrz.fbkeywordnotifier
+package com.michalbrz.fbkeywordnotifier.fanpage
 
 interface FanpagesStorage {
 

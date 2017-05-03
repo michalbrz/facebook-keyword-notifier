@@ -1,16 +1,18 @@
 package com.michalbrz.fbkeywordnotifier
 
-import com.michalbrz.fbkeywordnotifier.model.Fanpage
-import com.michalbrz.fbkeywordnotifier.model.Post
+import com.michalbrz.fbkeywordnotifier.fanpage.FavoriteFanpages
+import com.michalbrz.fbkeywordnotifier.fanpage.Fanpage
+import com.michalbrz.fbkeywordnotifier.fanpage.Post
+import com.michalbrz.fbkeywordnotifier.storage.KeywordStorage
+import com.michalbrz.fbkeywordnotifier.storage.ShownNotificationsStorage
 
 typealias NotificationMessages = List<String>
 
-class FacebookKeywordOccurence(val facebookInfoRetriever: FacebookInfoRetriever,
-                               val fanpagesStorage: FanpagesStorage,
-                               val keywordStorage: KeywordStorage,
-                               val shownNotificationsStorage: ShownNotificationsStorage) {
+class FacebookKeywordOccurrence(val favoriteFanpages: FavoriteFanpages,
+                                val keywordStorage: KeywordStorage,
+                                val shownNotificationsStorage: ShownNotificationsStorage) {
     fun ifKeywordOccuredInPosts(notificationDisplay: (NotificationMessages) -> Unit) {
-        facebookInfoRetriever.getPostsForFanpages(fanpagesStorage.getFavoriteFanpagesId()) { fanpages ->
+        favoriteFanpages.getAll { fanpages ->
             val keywords = keywordStorage.getKeywords()
             val alreadyShownUrls = shownNotificationsStorage.getAlreadyShownUrls()
             val notificationsMessages = fanpages
@@ -20,8 +22,7 @@ class FacebookKeywordOccurence(val facebookInfoRetriever: FacebookInfoRetriever,
                     .onEach { (post, _) -> setAsAlreadyNotified(post) }
                     .map { toNotificationMessage(it) }
             if (notificationsMessages.isNotEmpty()) {
-                println("invoked")
-                notificationDisplay.invoke(notificationsMessages)
+                notificationDisplay(notificationsMessages)
             }
         }
     }

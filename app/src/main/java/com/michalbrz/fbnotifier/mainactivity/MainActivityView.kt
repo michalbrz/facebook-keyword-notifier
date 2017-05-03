@@ -1,6 +1,6 @@
 package com.michalbrz.fbnotifier.mainactivity
 
-import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
+import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 
 interface MainActivityView {
 

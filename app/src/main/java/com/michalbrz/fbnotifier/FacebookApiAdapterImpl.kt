@@ -3,8 +3,9 @@ package com.michalbrz.fbnotifier
 import android.os.Bundle
 import com.facebook.AccessToken
 import com.facebook.GraphRequest
+import com.michalbrz.fbkeywordnotifier.facebookadapter.FacebookApiAdapter
 
-class FacebookApiAdapterImpl : com.michalbrz.fbkeywordnotifier.FacebookApiAdapter {
+class FacebookApiAdapterImpl : FacebookApiAdapter {
     override fun getJsonForPostsWithFanpagesId(fanpagesId: List<String>, jsonProcessor: (String?) -> Unit) {
         val request = GraphRequest.newGraphPathRequest(AccessToken.getCurrentAccessToken(), "/",
                 { graphResponse ->

@@ -1,7 +1,9 @@
 package com.michalbrz.fbkeywordnotifier
 
-import com.michalbrz.fbkeywordnotifier.model.Fanpage
-import com.michalbrz.fbkeywordnotifier.model.Post
+import com.michalbrz.fbkeywordnotifier.fanpage.FavoriteFanpages
+import com.michalbrz.fbkeywordnotifier.fanpage.Fanpage
+import com.michalbrz.fbkeywordnotifier.fanpage.Post
+import com.michalbrz.fbkeywordnotifier.storage.KeywordStorage
 import com.nhaarman.mockito_kotlin.*
 import org.amshove.kluent.shouldEqual
 import org.junit.Before
@@ -9,14 +11,11 @@ import org.junit.Test
 import org.mockito.Mockito
 import java.util.*
 
-class FacebookKeywordOccurenceTest {
+class FacebookKeywordOccurrenceTest {
 
-    val facebookInfoRetriever = mock<FacebookInfoRetriever>()
+    val favoriteFanpages = mock<FavoriteFanpages>()
     val keywordStorage = mock<KeywordStorage>()
-    val facebookKeywordChecker = FacebookKeywordOccurence(facebookInfoRetriever,
-                                                        DummyFanpagesStorage(),
-                                                        keywordStorage,
-                                                        InMemoryShownNotificationsStorage())
+    val facebookKeywordChecker = FacebookKeywordOccurrence(favoriteFanpages, keywordStorage, InMemoryShownNotificationsStorage())
     val mockCallback = mock<(NotificationMessages) -> Unit>()
 
     @Before
@@ -26,7 +25,7 @@ class FacebookKeywordOccurenceTest {
 
     @Test
     fun shouldNotCallCallbackWhenPostsDontContainKeyword() {
-        callFanpagesReadyCallback(facebookInfoRetriever, listOf(fanpageWithPosts(
+        callFanpagesReadyCallback(favoriteFanpages, listOf(fanpageWithPosts(
                 "Some message",
                 "Another message"
         )))
@@ -38,7 +37,7 @@ class FacebookKeywordOccurenceTest {
 
     @Test
     fun shouldReturnMessageForEveryPostContainingKeyword() {
-        callFanpagesReadyCallback(facebookInfoRetriever, listOf(fanpageWithPosts(
+        callFanpagesReadyCallback(favoriteFanpages, listOf(fanpageWithPosts(
                 "Message with Keyword1",
                 "Message with Keyword2"
         )))
@@ -50,7 +49,7 @@ class FacebookKeywordOccurenceTest {
 
     @Test
     fun shouldReturnFormattedMessageForEveryPostContainingKeyword() {
-        callFanpagesReadyCallback(facebookInfoRetriever, listOf(fanpageWithPosts(
+        callFanpagesReadyCallback(favoriteFanpages, listOf(fanpageWithPosts(
                 "Message with Keyword1",
                 "Message with Keyword2"
         )))
@@ -65,7 +64,7 @@ class FacebookKeywordOccurenceTest {
 
     @Test
     fun shouldNotReturnMessagesThatWereAlreadyShown() {
-        callFanpagesReadyCallback(facebookInfoRetriever, listOf(fanpageWithPosts(
+        callFanpagesReadyCallback(favoriteFanpages, listOf(fanpageWithPosts(
                 "Message with Keyword1",
                 "Message with Keyword2"
         )))
@@ -85,11 +84,11 @@ class FacebookKeywordOccurenceTest {
         return Post(Date(), message, "imageUrl", "url://$message")
     }
 
-    private fun callFanpagesReadyCallback(facebookInfoRetriever: FacebookInfoRetriever, fanpages: List<Fanpage>) {
+    private fun callFanpagesReadyCallback(favoriteFanpages: FavoriteFanpages, fanpages: List<Fanpage>) {
         Mockito.doAnswer { invocation ->
-            val fanpagesProcessor: FanpagesProcessor = invocation.arguments[1] as FanpagesProcessor
+            val fanpagesProcessor: FanpagesProcessor = invocation.arguments[0] as FanpagesProcessor
             fanpagesProcessor.invoke(fanpages)
             ""
-        }.whenever(facebookInfoRetriever).getPostsForFanpages(any(), any())
+        }.whenever(favoriteFanpages).getAll(any())
     }
 }

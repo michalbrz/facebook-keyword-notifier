@@ -3,7 +3,7 @@ package com.michalbrz.fbnotifier
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.michalbrz.fbkeywordnotifier.ShownNotificationsStorage
+import com.michalbrz.fbkeywordnotifier.storage.ShownNotificationsStorage
 
 class ShownNotificationsStorageImpl(context: Context) : ShownNotificationsStorage {
 

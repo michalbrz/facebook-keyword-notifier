@@ -1,9 +1,9 @@
 package com.michalbrz.fbnotifier
 
-import com.michalbrz.fbkeywordnotifier.DummyFanpagesStorage
+import com.michalbrz.fbkeywordnotifier.fanpage.DummyFanpagesStorage
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
 import com.michalbrz.fbkeywordnotifier.FanpagesInfoProcessor
-import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
+import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 import com.michalbrz.fbnotifier.mainactivity.MainActivityPresenter
 import com.michalbrz.fbnotifier.mainactivity.MainActivityView
 import com.nhaarman.mockito_kotlin.*

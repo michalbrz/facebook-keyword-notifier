@@ -1,7 +1,7 @@
 package com.michalbrz.fbnotifier.mainactivity
 
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
-import com.michalbrz.fbkeywordnotifier.FanpagesStorage
+import com.michalbrz.fbkeywordnotifier.fanpage.FanpagesStorage
 
 class MainActivityPresenter(val view: MainActivityView,
                             val facebookInfoRetriever: FacebookInfoRetriever,

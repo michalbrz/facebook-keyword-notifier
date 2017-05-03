@@ -1,7 +1,7 @@
 package com.michalbrz.fbkeywordnotifier
 
-import com.michalbrz.fbkeywordnotifier.model.Fanpage
-import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
+import com.michalbrz.fbkeywordnotifier.fanpage.Fanpage
+import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 
 interface FacebookInfoRetriever {
 

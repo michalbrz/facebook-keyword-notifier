@@ -6,8 +6,13 @@ import android.content.Intent
 import android.support.v4.app.NotificationCompat
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService
-import com.michalbrz.fbkeywordnotifier.*
+import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
+import com.michalbrz.fbkeywordnotifier.FacebookKeywordOccurrence
+import com.michalbrz.fbkeywordnotifier.NotificationMessages
+import com.michalbrz.fbkeywordnotifier.fanpage.FavoriteFanpagesImpl
 import com.michalbrz.fbkeywordnotifier.logger.Logger
+import com.michalbrz.fbkeywordnotifier.fanpage.DummyFanpagesStorage
+import com.michalbrz.fbkeywordnotifier.storage.DummyKeywordStorage
 import com.michalbrz.fbnotifier.postslist.PostsListActivity
 
 class KeywordOccurrenceCheckService : JobService() {
@@ -17,10 +22,9 @@ class KeywordOccurrenceCheckService : JobService() {
     override fun onStartJob(job: JobParameters?): Boolean {
         Logger.info("Facebook posts retrieval job started")
         val facebookInfoRetrieverImpl = FacebookInfoRetrieverImpl(FacebookApiAdapterImpl())
-        val keywordChecker = FacebookKeywordOccurence(facebookInfoRetrieverImpl,
-                                                    DummyFanpagesStorage(),
-                                                    DummyKeywordStorage(),
-                                                    ShownNotificationsStorageImpl(applicationContext))
+        val favoriteFanpages = FavoriteFanpagesImpl(facebookInfoRetrieverImpl, DummyFanpagesStorage())
+        val keywordChecker = FacebookKeywordOccurrence(favoriteFanpages,
+                DummyKeywordStorage(), ShownNotificationsStorageImpl(applicationContext))
         keywordChecker.ifKeywordOccuredInPosts { notificationMessages ->
             showNotification(notificationMessages)
 

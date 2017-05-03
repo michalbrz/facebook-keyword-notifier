@@ -1,4 +1,4 @@
-package com.michalbrz.fbkeywordnotifier.model
+package com.michalbrz.fbkeywordnotifier.fanpage
 
 import java.util.*
 

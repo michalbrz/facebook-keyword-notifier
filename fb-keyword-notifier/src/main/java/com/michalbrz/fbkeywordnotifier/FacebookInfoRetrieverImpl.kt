@@ -3,13 +3,15 @@ package com.michalbrz.fbkeywordnotifier
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.michalbrz.fbkeywordnotifier.facebookadapter.FacebookApiAdapter
+import com.michalbrz.fbkeywordnotifier.facebookadapter.FanpageInfoJson
 import com.michalbrz.fbkeywordnotifier.logger.Logger
-import com.michalbrz.fbkeywordnotifier.model.FanpageJson
+import com.michalbrz.fbkeywordnotifier.facebookadapter.FanpageJson
 
-class FacebookInfoRetrieverImpl(val facebookApiAdatper: FacebookApiAdapter) : FacebookInfoRetriever {
+class FacebookInfoRetrieverImpl(val facebookApiAdapter: FacebookApiAdapter) : FacebookInfoRetriever {
 
     override fun getPostsForFanpages(fanpagesId: List<String>, fanpagesProcessor: FanpagesProcessor) {
-        facebookApiAdatper.getJsonForPostsWithFanpagesId(fanpagesId) { json ->
+        facebookApiAdapter.getJsonForPostsWithFanpagesId(fanpagesId) { json ->
             val fanpagesList = parseJsonOrEmptyList(json) { json, mapper ->
                 val fanpageJsonList = mapper.readValue<Map<String, FanpageJson>>(json).values
                 fanpageJsonList.map { it.toFanpage() }
@@ -20,7 +22,7 @@ class FacebookInfoRetrieverImpl(val facebookApiAdatper: FacebookApiAdapter) : Fa
     }
 
     override fun getFanpagesInfo(fanpagesId: List<String>, fanpagesInfoProcessor: FanpagesInfoProcessor) {
-        facebookApiAdatper.getJsonForPagesWithId(fanpagesId) { json ->
+        facebookApiAdapter.getJsonForPagesWithId(fanpagesId) { json ->
             val fanpagesInfoList = parseJsonOrEmptyList(json) { json, mapper ->
 //                no idea why, but below line can't be extracted to reified method
                 val fanpageInfoJsonList = mapper.readValue<Map<String, FanpageInfoJson>>(json).values

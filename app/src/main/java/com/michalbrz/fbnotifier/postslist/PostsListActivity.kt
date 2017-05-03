@@ -3,8 +3,8 @@ package com.michalbrz.fbnotifier.postslist
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import com.michalbrz.fbkeywordnotifier.DummyFanpagesStorage
-import com.michalbrz.fbkeywordnotifier.DummyKeywordStorage
+import com.michalbrz.fbkeywordnotifier.fanpage.DummyFanpagesStorage
+import com.michalbrz.fbkeywordnotifier.storage.DummyKeywordStorage
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
 import com.michalbrz.fbnotifier.*
 import kotlinx.android.synthetic.main.activity_posts_list.*

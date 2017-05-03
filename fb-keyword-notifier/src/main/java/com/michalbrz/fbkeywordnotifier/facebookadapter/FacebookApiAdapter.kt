@@ -1,4 +1,4 @@
-package com.michalbrz.fbkeywordnotifier
+package com.michalbrz.fbkeywordnotifier.facebookadapter
 
 interface FacebookApiAdapter {
 

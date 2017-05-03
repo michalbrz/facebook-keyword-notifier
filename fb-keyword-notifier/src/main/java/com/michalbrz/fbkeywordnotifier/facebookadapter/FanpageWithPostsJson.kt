@@ -1,7 +1,8 @@
-package com.michalbrz.fbkeywordnotifier.model
+package com.michalbrz.fbkeywordnotifier.facebookadapter
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.michalbrz.fbkeywordnotifier.PictureJson
+import com.michalbrz.fbkeywordnotifier.fanpage.Fanpage
+import com.michalbrz.fbkeywordnotifier.fanpage.Post
 import java.util.*
 
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -1,7 +1,7 @@
-package com.michalbrz.fbkeywordnotifier
+package com.michalbrz.fbkeywordnotifier.facebookadapter
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.michalbrz.fbkeywordnotifier.model.FanpageInfo
+import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class FanpageInfoJson(val id: String, val name: String, val picture: PictureJson, val fan_count: Int) {

@@ -1,6 +1,6 @@
 package com.michalbrz.fbkeywordnotifier
 
-import com.michalbrz.fbkeywordnotifier.ShownNotificationsStorage
+import com.michalbrz.fbkeywordnotifier.storage.ShownNotificationsStorage
 
 class InMemoryShownNotificationsStorage : ShownNotificationsStorage {
 
