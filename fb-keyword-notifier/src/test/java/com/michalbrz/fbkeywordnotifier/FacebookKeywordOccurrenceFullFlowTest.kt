@@ -4,6 +4,8 @@ import com.michalbrz.fbkeywordnotifier.DataGeneration.fanpageWithPosts
 import com.michalbrz.fbkeywordnotifier.fakes.InMemoryShownNotificationsStorage
 import com.michalbrz.fbkeywordnotifier.fanpage.Fanpage
 import com.michalbrz.fbkeywordnotifier.fanpage.FavoriteFanpages
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.FacebookKeywordOccurrenceFactory
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.NotificationMessages
 import com.michalbrz.fbkeywordnotifier.storage.KeywordStorage
 import com.nhaarman.mockito_kotlin.*
 import org.amshove.kluent.shouldEqual

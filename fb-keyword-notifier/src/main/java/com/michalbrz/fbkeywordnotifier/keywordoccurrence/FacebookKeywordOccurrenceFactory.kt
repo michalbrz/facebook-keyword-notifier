@@ -1,5 +1,6 @@
-package com.michalbrz.fbkeywordnotifier
+package com.michalbrz.fbkeywordnotifier.keywordoccurrence
 
+import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
 import com.michalbrz.fbkeywordnotifier.facebookadapter.FacebookApiAdapter
 import com.michalbrz.fbkeywordnotifier.fanpage.FanpagesStorage
 import com.michalbrz.fbkeywordnotifier.fanpage.FavoriteFanpages
@@ -17,7 +18,7 @@ class FacebookKeywordOccurrenceFactory {
             val favoriteFanpages = FavoriteFanpagesImpl(
                     FacebookInfoRetrieverImpl(facebookApiAdapter),
                     fanpagesStorage)
-            return forSimpleStringPosts(favoriteFanpages, keywordStorage, shownNotificationsStorage)
+            return FacebookKeywordOccurrenceFactory.forSimpleStringPosts(favoriteFanpages, keywordStorage, shownNotificationsStorage)
         }
 
         fun forSimpleStringPosts(favoriteFanpages: FavoriteFanpages,

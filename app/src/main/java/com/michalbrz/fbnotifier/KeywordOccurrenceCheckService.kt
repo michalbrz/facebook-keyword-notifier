@@ -6,9 +6,9 @@ import android.content.Intent
 import android.support.v4.app.NotificationCompat
 import com.firebase.jobdispatcher.JobParameters
 import com.firebase.jobdispatcher.JobService
-import com.michalbrz.fbkeywordnotifier.FacebookKeywordOccurrenceFactory
-import com.michalbrz.fbkeywordnotifier.NotificationMessages
 import com.michalbrz.fbkeywordnotifier.fanpage.DummyFanpagesStorage
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.FacebookKeywordOccurrenceFactory
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.NotificationMessages
 import com.michalbrz.fbkeywordnotifier.logger.Logger
 import com.michalbrz.fbkeywordnotifier.storage.DummyKeywordStorage
 import com.michalbrz.fbnotifier.postslist.PostsListActivity

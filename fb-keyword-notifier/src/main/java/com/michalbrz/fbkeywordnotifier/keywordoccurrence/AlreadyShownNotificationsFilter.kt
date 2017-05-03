@@ -1,4 +1,4 @@
-package com.michalbrz.fbkeywordnotifier
+package com.michalbrz.fbkeywordnotifier.keywordoccurrence
 
 import com.michalbrz.fbkeywordnotifier.fanpage.Post
 import com.michalbrz.fbkeywordnotifier.storage.ShownNotificationsStorage

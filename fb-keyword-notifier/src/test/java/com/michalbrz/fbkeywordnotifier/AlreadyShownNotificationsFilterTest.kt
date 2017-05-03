@@ -3,6 +3,9 @@ package com.michalbrz.fbkeywordnotifier
 import com.michalbrz.fbkeywordnotifier.DataGeneration.newPost
 import com.michalbrz.fbkeywordnotifier.DataGeneration.withPosts
 import com.michalbrz.fbkeywordnotifier.fakes.InMemoryShownNotificationsStorage
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.AlreadyShownNotificationsFilter
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.IFacebookKeywordOccurrence
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.PostsWithFanpages
 import com.michalbrz.fbkeywordnotifier.storage.ShownNotificationsStorage
 import com.nhaarman.mockito_kotlin.*
 import org.amshove.kluent.shouldContain

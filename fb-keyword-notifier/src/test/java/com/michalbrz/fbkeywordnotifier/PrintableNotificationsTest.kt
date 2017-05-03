@@ -3,6 +3,10 @@ package com.michalbrz.fbkeywordnotifier
 import com.michalbrz.fbkeywordnotifier.DataGeneration.fanpage
 import com.michalbrz.fbkeywordnotifier.DataGeneration.postWithMessage
 import com.michalbrz.fbkeywordnotifier.DataGeneration.withPosts
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.IFacebookKeywordOccurrence
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.NotificationMessages
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.PostsWithFanpages
+import com.michalbrz.fbkeywordnotifier.keywordoccurrence.PrintableNotifications
 import com.nhaarman.mockito_kotlin.*
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
