@@ -24,7 +24,7 @@ class KeywordOccurrenceCheckService : JobService() {
                 DummyFanpagesStorage(),
                 DummyKeywordStorage(),
                 ShownNotificationsStorageImpl(applicationContext))
-        simpleStringPosts.ifKeywordOccuredInPosts { notificationMessages ->
+        simpleStringPosts.ifKeywordOccurredInPosts { notificationMessages ->
             showNotification(notificationMessages)
         }
         return false

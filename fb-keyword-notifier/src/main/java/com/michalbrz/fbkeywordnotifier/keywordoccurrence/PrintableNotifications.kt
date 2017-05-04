@@ -4,9 +4,10 @@ import com.michalbrz.fbkeywordnotifier.fanpage.Fanpage
 import com.michalbrz.fbkeywordnotifier.fanpage.Post
 
 class PrintableNotifications(val facebookKeywordOccurrence: IFacebookKeywordOccurrence) {
-    fun ifKeywordOccuredInPosts(notificationDisplay: (NotificationMessages) -> Unit) {
+    fun ifKeywordOccurredInPosts(notificationDisplay: (NotificationMessages) -> Unit) {
         facebookKeywordOccurrence.ifKeywordOccuredInPosts { postsWithFanpages ->
-            notificationDisplay(postsWithFanpages.map { toNotificationMessage(it) })
+            val notifications = postsWithFanpages.map { toNotificationMessage(it) }
+            if (notifications.isNotEmpty()) notificationDisplay(notifications)
         }
     }
 

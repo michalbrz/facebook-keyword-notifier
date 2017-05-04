@@ -24,12 +24,22 @@ class PrintableNotificationsTest {
         callKeywordOccurenceCallback(keywordOccurence, listOf((post1 to fanpage), (post2 to fanpage)))
 
         val callbackMock = mock<(NotificationMessages) -> Unit>()
-        printableNotifications.ifKeywordOccuredInPosts(callbackMock)
+        printableNotifications.ifKeywordOccurredInPosts(callbackMock)
 
         verify(callbackMock).invoke(check {
             it[0] shouldEqual "fanpageName: post message"
             it[1] shouldEqual "fanpageName: another post message"
         })
+    }
+
+    @Test
+    fun shouldNotCallCallbackWhenNotificationsAreEmpty() {
+        callKeywordOccurenceCallback(keywordOccurence, emptyList())
+
+        val callbackMock = mock<(NotificationMessages) -> Unit>()
+        printableNotifications.ifKeywordOccurredInPosts(callbackMock)
+
+        verify(callbackMock, never()).invoke(any())
     }
 
     private fun callKeywordOccurenceCallback(keywordOccurence: IFacebookKeywordOccurrence, postsWithFanpages: PostsWithFanpages) {

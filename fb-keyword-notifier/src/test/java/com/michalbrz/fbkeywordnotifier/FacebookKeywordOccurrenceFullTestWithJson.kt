@@ -35,14 +35,14 @@ class FacebookKeywordOccurrenceFullTestWithJson {
 
     @Test
     fun shouldReturnMessageForEveryPostContainingKeyword() {
-        facebookKeywordOccurrence.ifKeywordOccuredInPosts(mockDisplayNotificationsCallback)
+        facebookKeywordOccurrence.ifKeywordOccurredInPosts(mockDisplayNotificationsCallback)
 
         verify(mockDisplayNotificationsCallback).invoke( argThat { size == 3} )
     }
 
     @Test
     fun shouldReturnFormattedMessageForEveryPostContainingKeyword() {
-        facebookKeywordOccurrence.ifKeywordOccuredInPosts(mockDisplayNotificationsCallback)
+        facebookKeywordOccurrence.ifKeywordOccurredInPosts(mockDisplayNotificationsCallback)
 
         verify(mockDisplayNotificationsCallback).invoke( check {
             it[0] shouldEqual "Fanpage1: Some flight to Singapore"
@@ -52,10 +52,10 @@ class FacebookKeywordOccurrenceFullTestWithJson {
 
     @Test
     fun shouldNotReturnMessagesThatWereAlreadyShown() {
-        facebookKeywordOccurrence.ifKeywordOccuredInPosts(mockDisplayNotificationsCallback)
+        facebookKeywordOccurrence.ifKeywordOccurredInPosts(mockDisplayNotificationsCallback)
         verify(mockDisplayNotificationsCallback).invoke( argThat { size == 3 })
 
-        facebookKeywordOccurrence.ifKeywordOccuredInPosts { mockDisplayNotificationsCallback }
+        facebookKeywordOccurrence.ifKeywordOccurredInPosts { mockDisplayNotificationsCallback }
         verifyNoMoreInteractions(mockDisplayNotificationsCallback)
     }
 

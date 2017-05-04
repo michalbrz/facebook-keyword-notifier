@@ -34,7 +34,7 @@ class FacebookKeywordOccurrenceFullFlowTest {
                 "Another message"
         )))
 
-        facebookKeywordChecker.ifKeywordOccuredInPosts(mockCallback)
+        facebookKeywordChecker.ifKeywordOccurredInPosts(mockCallback)
 
         verify(mockCallback, never()).invoke(any())
     }
@@ -46,7 +46,7 @@ class FacebookKeywordOccurrenceFullFlowTest {
                 "Message with Keyword2"
         )))
 
-        facebookKeywordChecker.ifKeywordOccuredInPosts(mockCallback)
+        facebookKeywordChecker.ifKeywordOccurredInPosts(mockCallback)
 
         verify(mockCallback).invoke( argThat { size == 2} )
     }
@@ -58,7 +58,7 @@ class FacebookKeywordOccurrenceFullFlowTest {
                 "Message with Keyword2"
         )))
 
-        facebookKeywordChecker.ifKeywordOccuredInPosts(mockCallback)
+        facebookKeywordChecker.ifKeywordOccurredInPosts(mockCallback)
 
         verify(mockCallback).invoke( check {
             it[0] shouldEqual "fanpageName: Message with Keyword1"
@@ -73,10 +73,10 @@ class FacebookKeywordOccurrenceFullFlowTest {
                 "Message with Keyword2"
         )))
 
-        facebookKeywordChecker.ifKeywordOccuredInPosts(mockCallback)
+        facebookKeywordChecker.ifKeywordOccurredInPosts(mockCallback)
         verify(mockCallback).invoke( argThat { size == 2 })
 
-        facebookKeywordChecker.ifKeywordOccuredInPosts { mockCallback }
+        facebookKeywordChecker.ifKeywordOccurredInPosts { mockCallback }
         verifyNoMoreInteractions(mockCallback)
     }
 
