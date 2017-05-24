@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 import com.michalbrz.fbnotifier.R
+import com.michalbrz.fbnotifier.postslist.singlefanpage.SingleFanpagePostsListActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fanpage_item.view.*
 
@@ -20,7 +21,7 @@ class FanpagesAdapter : RecyclerView.Adapter<FanpagesAdapter.FanpageViewHolder>(
                 fanpageNameTextView.text = fanpageInfo.name
                 fanpageLikesTextView.text = "${fanpageInfo.likes} likes"
                 Picasso.with(context).load(fanpageInfo.imageUrl).into(fanpagePhotoImageView)
-//                setOnClickListener { SingleFanpagePostsListActivity.startActivityForFanpage(context, fanpageInfo) }
+                setOnClickListener { SingleFanpagePostsListActivity.startActivityForFanpage(context, fanpageInfo.id) }
             }
         }
     }

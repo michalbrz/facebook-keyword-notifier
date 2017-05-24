@@ -8,4 +8,4 @@ data class Post(val time: Date, val text: String, val ImageUrl: String, val post
     fun contains(keyword: String): Boolean = text.toLowerCase().contains(keyword)
 }
 
-data class FanpageInfo(val name: String, val imageUrl: String, val likes: Int)
+data class FanpageInfo(val id: String, val name: String, val imageUrl: String, val likes: Int)

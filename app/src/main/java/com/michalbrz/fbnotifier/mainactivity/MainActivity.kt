@@ -13,11 +13,14 @@ import com.firebase.jobdispatcher.Constraint
 import com.firebase.jobdispatcher.FirebaseJobDispatcher
 import com.firebase.jobdispatcher.GooglePlayDriver
 import com.firebase.jobdispatcher.Trigger
-import com.michalbrz.fbkeywordnotifier.fanpage.DummyFanpagesStorage
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
+import com.michalbrz.fbkeywordnotifier.fanpage.DummyFanpagesStorage
 import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
-import com.michalbrz.fbnotifier.*
+import com.michalbrz.fbnotifier.FacebookApiAdapterImpl
+import com.michalbrz.fbnotifier.KeywordOccurrenceCheckService
+import com.michalbrz.fbnotifier.R
 import com.michalbrz.fbnotifier.postslist.PostsListActivity
+import com.michalbrz.fbnotifier.toastWithMessage
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MainActivityView {
@@ -31,7 +34,7 @@ class MainActivity : AppCompatActivity(), MainActivityView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        registerCallbacks()
+        registerFacebookLoginCallbacks()
 //        if (AccessToken.getCurrentAccessToken() != null) {
 //            fbLoginButton.visibility = View.GONE
 //        }
@@ -77,7 +80,7 @@ class MainActivity : AppCompatActivity(), MainActivityView {
         callbackManager.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun registerCallbacks() {
+    private fun registerFacebookLoginCallbacks() {
         fbLoginButton.registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(result: LoginResult?) {

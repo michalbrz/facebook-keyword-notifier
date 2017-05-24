@@ -6,7 +6,7 @@ import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class FanpageInfoJson(val id: String, val name: String, val picture: PictureJson, val fan_count: Int) {
 
-    fun toFanpageInfo() : FanpageInfo = FanpageInfo(name, picture.data.url, fan_count)
+    fun toFanpageInfo() : FanpageInfo = FanpageInfo(id, name, picture.data.url, fan_count)
 }
 
 data class PictureJson(val data: PictureData)
