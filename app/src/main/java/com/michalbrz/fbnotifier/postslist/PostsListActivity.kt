@@ -9,7 +9,7 @@ import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
 import com.michalbrz.fbnotifier.*
 import kotlinx.android.synthetic.main.activity_posts_list.*
 
-class PostsListActivity : AppCompatActivity(), PostsListActivityView {
+class PostsListActivity : AppCompatActivity(), PostsListView {
 
     private val postsAdapter: PostsAdapter = PostsAdapter()
 
@@ -19,7 +19,7 @@ class PostsListActivity : AppCompatActivity(), PostsListActivityView {
 
         postsRecyclerView.layoutManager = LinearLayoutManager(this)
         postsRecyclerView.adapter = postsAdapter
-        PostsActivityPresenter(this,
+        PostsPresenter(this,
                 FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()),
                 DummyFanpagesStorage(),
                 DummyKeywordStorage())

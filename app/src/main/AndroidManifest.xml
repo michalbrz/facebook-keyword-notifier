@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".postslist.PostsListActivity"/>
+        <activity android:name=".postslist.singlefanpage.SingleFanpagePostsListActivity"/>
 
         <service
                 android:exported="false"

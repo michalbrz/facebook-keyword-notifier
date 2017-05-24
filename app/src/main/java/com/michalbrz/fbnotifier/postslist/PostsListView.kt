@@ -1,6 +1,6 @@
 package com.michalbrz.fbnotifier.postslist
 
-interface PostsListActivityView {
+interface PostsListView {
 
     fun displayPosts(posts: List<PostViewModel>)
 

@@ -20,6 +20,7 @@ class FanpagesAdapter : RecyclerView.Adapter<FanpagesAdapter.FanpageViewHolder>(
                 fanpageNameTextView.text = fanpageInfo.name
                 fanpageLikesTextView.text = "${fanpageInfo.likes} likes"
                 Picasso.with(context).load(fanpageInfo.imageUrl).into(fanpagePhotoImageView)
+//                setOnClickListener { SingleFanpagePostsListActivity.startActivityForFanpage(context, fanpageInfo) }
             }
         }
     }
