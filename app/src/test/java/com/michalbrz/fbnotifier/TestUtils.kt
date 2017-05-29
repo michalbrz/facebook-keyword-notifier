@@ -9,4 +9,4 @@ import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 //    )
 //}
 
-fun sampleFanpageInfo() : FanpageInfo = FanpageInfo("FanpageName", "url", 123123)
+fun sampleFanpageInfo() : FanpageInfo = FanpageInfo("123213", "FanpageName", "url", 123123)

@@ -3,7 +3,7 @@ package com.michalbrz.fbnotifier.mainactivity
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
 import com.michalbrz.fbkeywordnotifier.fanpage.FanpagesStorage
 
-class MainActivityPresenter(val view: MainActivityView,
+class MainFragmentPresenter(val view: MainFragmentView,
                             val facebookInfoRetriever: FacebookInfoRetriever,
                             val fanpagesStorage: FanpagesStorage) {
 

@@ -1,103 +1,49 @@
 package com.michalbrz.fbnotifier.mainactivity
 
-import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginResult
-import com.firebase.jobdispatcher.Constraint
-import com.firebase.jobdispatcher.FirebaseJobDispatcher
-import com.firebase.jobdispatcher.GooglePlayDriver
-import com.firebase.jobdispatcher.Trigger
-import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
-import com.michalbrz.fbkeywordnotifier.fanpage.DummyFanpagesStorage
-import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
-import com.michalbrz.fbnotifier.FacebookApiAdapterImpl
-import com.michalbrz.fbnotifier.KeywordOccurrenceCheckService
+import android.view.MenuItem
 import com.michalbrz.fbnotifier.R
-import com.michalbrz.fbnotifier.postslist.PostsListActivity
-import com.michalbrz.fbnotifier.toastWithMessage
-import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), MainActivityView {
+class MainActivity : AppCompatActivity() {
 
     val TAG: String = this.javaClass.simpleName
-
-    private val callbackManager = CallbackManager.Factory.create()
-
-    private val fanpagesAdapter: FanpagesAdapter = FanpagesAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        registerFacebookLoginCallbacks()
-//        if (AccessToken.getCurrentAccessToken() != null) {
-//            fbLoginButton.visibility = View.GONE
-//        }
-        MainActivityPresenter(this, FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()), DummyFanpagesStorage())
 
-        setUpFanpagesList()
+        val navigation = findViewById(R.id.navigation) as BottomNavigationView
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        veryRandomButton.setOnClickListener { startActivity(Intent(this, PostsListActivity::class.java)) }
-
-        val dispatcher: FirebaseJobDispatcher = FirebaseJobDispatcher(GooglePlayDriver(this))
-        schedulePostPollingJob(dispatcher)
-
-        stopJobButton.setOnClickListener { dispatcher.cancelAll() }
+        switchToFragment(MainFragment())
     }
 
-    private fun schedulePostPollingJob(dispatcher: FirebaseJobDispatcher) {
-        val oneHour: Int = 60 * 60
-        val oneHourTenMinutes: Int = oneHour + 10 * 60
-        val myJob = dispatcher.newJobBuilder()
-                .setService(KeywordOccurrenceCheckService::class.java)
-                .setTag("my-unique-tag")
-                .setRecurring(true)
-                .setTrigger(Trigger.executionWindow(oneHour, oneHourTenMinutes))
-                .setConstraints(Constraint.ON_ANY_NETWORK)
-                .setReplaceCurrent(true)
-                .build()
-        dispatcher.mustSchedule(myJob)
+    private val mOnNavigationItemSelectedListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
+
+        override fun onNavigationItemSelected(item: MenuItem): Boolean {
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    switchToFragment(MainFragment())
+                    return true
+                }
+                R.id.navigation_dashboard -> {
+                    return true
+                }
+                R.id.navigation_notifications -> {
+                    return true
+                }
+            }
+            return false
+        }
     }
 
-    private fun setUpFanpagesList() {
-        fanpagesRecyclerView.setHasFixedSize(true)
-        fanpagesRecyclerView.layoutManager = LinearLayoutManager(this)
-        fanpagesRecyclerView.adapter = fanpagesAdapter
-    }
-
-    override fun displayFanpages(fanpagesInfo: List<FanpageInfo>) {
-        fanpagesAdapter.fanpages = fanpagesInfo
-        fanpagesAdapter.notifyDataSetChanged()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        callbackManager.onActivityResult(requestCode, resultCode, data)
-    }
-
-    private fun registerFacebookLoginCallbacks() {
-        fbLoginButton.registerCallback(callbackManager,
-                object : FacebookCallback<LoginResult> {
-                    override fun onSuccess(result: LoginResult?) {
-                        this@MainActivity.toastWithMessage("Successfully logged with Facebook")
-                        Log.i(TAG, "SUCCESS")
-                    }
-
-                    override fun onError(error: FacebookException?) {
-                        this@MainActivity.toastWithMessage("Logging failed")
-                        Log.e(TAG, "Logging failed: $error")
-                    }
-
-                    override fun onCancel() {
-                        this@MainActivity.toastWithMessage("Logging cancelled")
-                        Log.e(TAG, "CANCEL")
-                    }
-                })
+    private fun switchToFragment(fragment: Fragment) {
+        Log.i(TAG, "Moving to ${fragment.javaClass.simpleName}")
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_holder, fragment).commit()
     }
 }
 

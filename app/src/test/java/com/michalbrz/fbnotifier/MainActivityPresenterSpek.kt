@@ -4,8 +4,8 @@ import com.michalbrz.fbkeywordnotifier.fanpage.DummyFanpagesStorage
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetriever
 import com.michalbrz.fbkeywordnotifier.FanpagesInfoProcessor
 import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
-import com.michalbrz.fbnotifier.mainactivity.MainActivityPresenter
-import com.michalbrz.fbnotifier.mainactivity.MainActivityView
+import com.michalbrz.fbnotifier.mainactivity.MainFragmentPresenter
+import com.michalbrz.fbnotifier.mainactivity.MainFragmentView
 import com.nhaarman.mockito_kotlin.*
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.context
@@ -19,7 +19,7 @@ import org.mockito.Mockito.doAnswer
 class FbKeywordNotifierSpek: Spek({
     given("Presenter is created") {
 
-        val mainActivityView = mock<MainActivityView>()
+        val mainActivityView = mock<MainFragmentView>()
         val facebookInfoRetriever = mock<FacebookInfoRetriever>()
         val fanpagesStorage = DummyFanpagesStorage()
 
@@ -27,7 +27,7 @@ class FbKeywordNotifierSpek: Spek({
         val savedFanpagesId = fanpagesStorage.getFavoriteFanpagesId()
 
         callFanpagesReadyCallback(facebookInfoRetriever, fanpagesInfo, savedFanpagesId)
-        val presenter = MainActivityPresenter(mainActivityView, facebookInfoRetriever, fanpagesStorage)
+        val presenter = MainFragmentPresenter(mainActivityView, facebookInfoRetriever, fanpagesStorage)
 
         it("should get info about saved fanpages") {
             verify(facebookInfoRetriever).getFanpagesInfo(eq(savedFanpagesId), any())

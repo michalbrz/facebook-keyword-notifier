@@ -2,7 +2,7 @@ package com.michalbrz.fbnotifier.mainactivity
 
 import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 
-interface MainActivityView {
+interface MainFragmentView {
 
     fun displayFanpages(fanpagesInfo: List<FanpageInfo>)
 }

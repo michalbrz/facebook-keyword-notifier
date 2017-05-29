@@ -1,48 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context="com.michalbrz.fbnotifier.mainactivity.MainActivity">
 
-    <Button
-            android:id="@+id/veryRandomButton"
-            android:layout_width="wrap_content"
+    <FrameLayout
+            android:id="@+id/fragment_holder"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"/>
+
+    <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show posts"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_gravity="bottom"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/navigation"/>
 
-    <com.facebook.login.widget.LoginButton
-            android:id="@+id/fbLoginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_margin="10dp"/>
-
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/fanpagesRecyclerView"
-            android:scrollbars="vertical"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/veryRandomButton"
-            app:layout_constraintBottom_toTopOf="@id/fbLoginButton"/>
-
-    <Button
-            android:text="Stop job"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/stopJobButton"
-            app:layout_constraintLeft_toRightOf="@+id/veryRandomButton"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="8dp"/>
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
