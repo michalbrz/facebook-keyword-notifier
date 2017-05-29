@@ -22,7 +22,6 @@ import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 import com.michalbrz.fbnotifier.FacebookApiAdapterImpl
 import com.michalbrz.fbnotifier.KeywordOccurrenceCheckService
 import com.michalbrz.fbnotifier.R
-import com.michalbrz.fbnotifier.postslist.PostsListActivity
 import com.michalbrz.fbnotifier.toastWithMessage
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -45,8 +44,6 @@ class MainFragment : Fragment(), MainFragmentView {
         MainFragmentPresenter(this, FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()), DummyFanpagesStorage())
 
         setUpFanpagesList()
-
-        veryRandomButton.setOnClickListener { startActivity(Intent(context, PostsListActivity::class.java)) }
 
         val dispatcher: FirebaseJobDispatcher = FirebaseJobDispatcher(GooglePlayDriver(context))
         schedulePostPollingJob(dispatcher)

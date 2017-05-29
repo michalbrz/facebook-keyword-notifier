@@ -11,7 +11,7 @@ import com.michalbrz.fbkeywordnotifier.keywordoccurrence.FacebookKeywordOccurren
 import com.michalbrz.fbkeywordnotifier.keywordoccurrence.NotificationMessages
 import com.michalbrz.fbkeywordnotifier.logger.Logger
 import com.michalbrz.fbkeywordnotifier.storage.DummyKeywordStorage
-import com.michalbrz.fbnotifier.postslist.PostsListActivity
+import com.michalbrz.fbnotifier.mainactivity.MainActivity
 
 class KeywordOccurrenceCheckService : JobService() {
 
@@ -31,7 +31,8 @@ class KeywordOccurrenceCheckService : JobService() {
     }
 
     fun showNotification(notificationMessages: NotificationMessages) {
-        val notificationIntent = Intent(this, PostsListActivity::class.java)
+        val notificationIntent = Intent(this, MainActivity::class.java)
+        //TODO: add data to display PostsLists fragment
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val builder = NotificationCompat.Builder(this)

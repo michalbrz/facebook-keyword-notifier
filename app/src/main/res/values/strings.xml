@@ -4,7 +4,7 @@
     <string name="fb_login_protocol_scheme">fb1422200391175307</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_all_posts">All Posts</string>
     <string name="title_notifications">Notifications</string>
     <string name="main_fragment">MainFragment</string> <!--required by chrome custom tabs-->
 </resources>

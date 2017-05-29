@@ -5,8 +5,8 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.MenuItem
 import com.michalbrz.fbnotifier.R
+import com.michalbrz.fbnotifier.postslist.PostsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,23 +22,13 @@ class MainActivity : AppCompatActivity() {
         switchToFragment(MainFragment())
     }
 
-    private val mOnNavigationItemSelectedListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
-
-        override fun onNavigationItemSelected(item: MenuItem): Boolean {
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    switchToFragment(MainFragment())
-                    return true
-                }
-                R.id.navigation_dashboard -> {
-                    return true
-                }
-                R.id.navigation_notifications -> {
-                    return true
-                }
-            }
-            return false
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.navigation_home -> switchToFragment(MainFragment())
+            R.id.navigation_all_posts -> switchToFragment(PostsFragment())
+            R.id.navigation_notifications -> { }
         }
+        true
     }
 
     private fun switchToFragment(fragment: Fragment) {
