@@ -2,11 +2,34 @@
     <string name="app_name">FbKeywordNotifier</string>
     <string name="facebook_app_id">1422200391175307</string>
     <string name="fb_login_protocol_scheme">fb1422200391175307</string> <!--required by chrome custom tabs-->
-    <string name="title_activity_main2">MainActivity2</string>
+
     <string name="title_home">Home</string>
     <string name="title_all_posts">All Posts</string>
     <string name="title_notifications">Notifications</string>
     <string name="main_fragment">MainFragment</string>
     <string name="notifications_fragment">Notifications</string>
     <string name="all_posts_fragment">All Posts</string>
+
+    <!--NotificationsFragment-->
+    <string name="notifications_active">Notifications active</string>
+    <string name="synchronization_period">Synchronization period</string>
+    <string name="synchronization_period_summary">How often should we synchronize posts</string>
+
+    <string name="default_synchronization_period">60</string>
+    <string-array name="synchronization_periods_simple_values">
+        <item>5 minutes</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>2 hours</item>
+        <item>4 hours</item>
+    </string-array>
+    <string-array name="synchronization_periods_in_minutes">
+        <item>5</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>240</item>
+    </string-array>
 </resources>

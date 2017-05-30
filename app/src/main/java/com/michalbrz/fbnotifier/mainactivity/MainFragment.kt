@@ -26,7 +26,7 @@ class MainFragment : Fragment(), MainFragmentView {
 
     private val callbackManager = CallbackManager.Factory.create()
 
-    private val fanpagesAdapter: FanpagesAdapter = FanpagesAdapter()
+    private val fanpagesAdapter = FanpagesAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         activity.title = getString(R.string.main_fragment)
