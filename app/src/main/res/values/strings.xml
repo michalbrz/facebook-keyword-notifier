@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">FbKeywordNotifier</string>
     <string name="facebook_app_id">1422200391175307</string>
-    <string name="fb_login_protocol_scheme">fb1422200391175307</string>
+    <string name="fb_login_protocol_scheme">fb1422200391175307</string> <!--required by chrome custom tabs-->
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_home">Home</string>
     <string name="title_all_posts">All Posts</string>
     <string name="title_notifications">Notifications</string>
-    <string name="main_fragment">MainFragment</string> <!--required by chrome custom tabs-->
+    <string name="main_fragment">MainFragment</string>
+    <string name="notifications_fragment">Notifications</string>
+    <string name="all_posts_fragment">All Posts</string>
 </resources>

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.michalbrz.fbnotifier.R
+import com.michalbrz.fbnotifier.notifications.NotificationsFragment
 import com.michalbrz.fbnotifier.postslist.PostsFragment
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_home -> switchToFragment(MainFragment())
             R.id.navigation_all_posts -> switchToFragment(PostsFragment())
-            R.id.navigation_notifications -> { }
+            R.id.navigation_notifications -> switchToFragment(NotificationsFragment())
         }
         true
     }

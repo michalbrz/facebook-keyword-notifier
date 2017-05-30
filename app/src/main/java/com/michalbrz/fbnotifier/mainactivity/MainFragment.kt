@@ -12,15 +12,10 @@ import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
-import com.firebase.jobdispatcher.Constraint
-import com.firebase.jobdispatcher.FirebaseJobDispatcher
-import com.firebase.jobdispatcher.GooglePlayDriver
-import com.firebase.jobdispatcher.Trigger
 import com.michalbrz.fbkeywordnotifier.FacebookInfoRetrieverImpl
 import com.michalbrz.fbkeywordnotifier.fanpage.DummyFanpagesStorage
 import com.michalbrz.fbkeywordnotifier.fanpage.FanpageInfo
 import com.michalbrz.fbnotifier.FacebookApiAdapterImpl
-import com.michalbrz.fbnotifier.KeywordOccurrenceCheckService
 import com.michalbrz.fbnotifier.R
 import com.michalbrz.fbnotifier.toastWithMessage
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -35,8 +30,7 @@ class MainFragment : Fragment(), MainFragmentView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         activity.title = getString(R.string.main_fragment)
-        val view = inflater.inflate(R.layout.fragment_main, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -44,25 +38,6 @@ class MainFragment : Fragment(), MainFragmentView {
         MainFragmentPresenter(this, FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()), DummyFanpagesStorage())
 
         setUpFanpagesList()
-
-        val dispatcher: FirebaseJobDispatcher = FirebaseJobDispatcher(GooglePlayDriver(context))
-        schedulePostPollingJob(dispatcher)
-
-        stopJobButton.setOnClickListener { dispatcher.cancelAll() }
-    }
-
-    private fun schedulePostPollingJob(dispatcher: FirebaseJobDispatcher) {
-        val oneHour: Int = 60 * 60
-        val oneHourTenMinutes: Int = oneHour + 10 * 60
-        val myJob = dispatcher.newJobBuilder()
-                .setService(KeywordOccurrenceCheckService::class.java)
-                .setTag("my-unique-tag")
-                .setRecurring(true)
-                .setTrigger(Trigger.executionWindow(oneHour, oneHourTenMinutes))
-                .setConstraints(Constraint.ON_ANY_NETWORK)
-                .setReplaceCurrent(true)
-                .build()
-        dispatcher.mustSchedule(myJob)
     }
 
     private fun setUpFanpagesList() {
