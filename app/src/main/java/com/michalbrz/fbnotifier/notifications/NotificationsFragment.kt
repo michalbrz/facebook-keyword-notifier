@@ -35,6 +35,9 @@ class NotificationsFragment : Fragment(), NotificationsView {
         keywordsRecyclerView.adapter = keywordsAdapter
 
         presenter.init()
+
+        // show() must be called when FAB is fully drawn
+        addKeywordButton.viewTreeObserver.addOnGlobalLayoutListener {  addKeywordButton?.show() }
     }
 
     private fun createChipsLayoutManager(): ChipsLayoutManager {
