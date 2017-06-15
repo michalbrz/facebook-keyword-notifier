@@ -14,6 +14,7 @@
     <string name="notifications_active">Notifications active</string>
     <string name="synchronization_period">Synchronization period</string>
     <string name="synchronization_period_summary">How often should we synchronize posts</string>
+    <string name="add_keyword">Add keyword</string>
 
     <!--SETTINGS-->
     <string name="pref_notifications_active">pref_notifications_active</string>
