@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="5dp">
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            >
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        tools:layout_marginTop="16dp"
+        tools:layout_marginLeft="16dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:background="@drawable/rounded">
 
         <TextView
+                android:id="@+id/keywordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/keyword1TextView"
-                android:layout_alignParentTop="true"
-                android:textSize="20sp"
+                android:layout_marginStart="6dp"
+                tools:text="Indonesia"
+                android:textColor="@color/chipTextColor"
+                android:textSize="17sp"
+                android:layout_centerVertical="true"
                 />
 
-    </RelativeLayout>
+        <ImageButton
+                android:id="@+id/removeKeywordButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/keywordTextView"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                app:srcCompat="@drawable/vector_cancel_24dp"
+                android:background="@null"
+                android:layout_centerVertical="true"
+                />
 
-</android.support.v7.widget.CardView>
+</RelativeLayout>

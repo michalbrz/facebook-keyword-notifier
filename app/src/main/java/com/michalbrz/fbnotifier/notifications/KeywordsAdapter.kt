@@ -14,7 +14,7 @@ class KeywordsAdapter : RecyclerView.Adapter<KeywordsAdapter.KeywordViewHolder>(
     class KeywordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(keyword: String) {
             with(itemView) {
-                keyword1TextView.text = keyword
+                keywordTextView.text = keyword
             }
         }
     }
