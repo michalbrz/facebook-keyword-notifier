@@ -35,7 +35,8 @@ class MainFragment : Fragment(), MainFragmentView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         registerFacebookLoginCallbacks()
-        MainFragmentPresenter(this, FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()), DummyFanpagesStorage())
+        val presenter = MainFragmentPresenter(this, FacebookInfoRetrieverImpl(FacebookApiAdapterImpl()), DummyFanpagesStorage())
+        presenter.init()
 
         setUpFanpagesList()
     }

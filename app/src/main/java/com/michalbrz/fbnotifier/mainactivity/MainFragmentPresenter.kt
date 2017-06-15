@@ -9,7 +9,7 @@ class MainFragmentPresenter(val view: MainFragmentView,
 
     val favoriteFanpagesId = fanpagesStorage.getFavoriteFanpagesId()
 
-    init {
+    fun init() {
         facebookInfoRetriever.getFanpagesInfo(favoriteFanpagesId) {
             fanpagesInfo -> view.displayFanpages(fanpagesInfo) }
     }
