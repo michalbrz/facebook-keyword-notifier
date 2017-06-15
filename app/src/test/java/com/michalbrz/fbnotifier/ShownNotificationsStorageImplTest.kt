@@ -24,12 +24,12 @@ class ShownNotificationsStorageImplTest {
     }
 
     @Test
-    fun shouldReturnEmptySetIfNoValuesWereAdded() {
+    fun `returns empty set if no values were added`() {
         shownNotificationsStorage.getAlreadyShownUrls().shouldBeEmpty()
     }
 
     @Test
-    fun shouldReturnValuesThatWereAdded() {
+    fun `returns values that were previously added`() {
         shownNotificationsStorage.addAlreadyShownUrl("url1")
         shownNotificationsStorage.addAlreadyShownUrl("url2")
 

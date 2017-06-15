@@ -11,7 +11,7 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
 
-class MainActivityPresenterTest {
+class MainFragmentPresenterTest {
 
     val facebookInfoRetriever: FacebookInfoRetriever = mock()
     val mainFragmentView: MainFragmentView = mock()
@@ -24,14 +24,14 @@ class MainActivityPresenterTest {
     }
 
     @Test
-    fun shouldRetrieveFanpagesInfo() {
+    fun `retrieves fanpages info after initialization`() {
         mainFragmentPresenter.init()
 
         verify(facebookInfoRetriever).getFanpagesInfo(eq(fanpagesStorage.getFavoriteFanpagesId()), any())
     }
 
     @Test
-    fun shouldDisplayFanpagesInfoWhenAfterItIsRetrieved() {
+    fun `displays fanpages info after fanpages are downloaded`() {
         val fanpagesInfo = listOf(sampleFanpageInfo(), sampleFanpageInfo())
         callFanpagesReadyCallback(facebookInfoRetriever, fanpagesInfo, fanpagesStorage.getFavoriteFanpagesId())
 
