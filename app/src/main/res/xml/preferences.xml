@@ -3,12 +3,12 @@
 <android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <SwitchPreferenceCompat
-            android:key="pref_sync"
+            android:key="@string/pref_notifications_active"
             android:title="@string/notifications_active"
             android:defaultValue="true"/>
     <ListPreference
-            android:dependency="pref_sync"
-            android:key="pref_syncConnectionType"
+            android:dependency="@string/pref_notifications_active"
+            android:key="@string/pref_sync_period_in_min"
             android:title="@string/synchronization_period"
             android:summary="%s"
             android:entries="@array/synchronization_periods_simple_values"
