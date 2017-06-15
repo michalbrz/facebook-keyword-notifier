@@ -9,12 +9,17 @@ import kotlinx.android.synthetic.main.keyword_item.view.*
 
 class KeywordsAdapter : RecyclerView.Adapter<KeywordsAdapter.KeywordViewHolder>(){
 
-    var keywords: List<String> = emptyList()
+    var keywords: MutableList<String> = mutableListOf()
 
-    class KeywordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class KeywordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(keyword: String) {
             with(itemView) {
                 keywordTextView.text = keyword
+                removeKeywordButton.setOnClickListener {
+                    val index = keywords.indexOf(keyword)
+                    keywords.remove(keyword)
+                    notifyItemRemoved(index)
+                }
             }
         }
     }

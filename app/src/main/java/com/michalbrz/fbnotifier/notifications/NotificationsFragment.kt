@@ -65,7 +65,7 @@ class NotificationsFragment : Fragment(), NotificationsView {
     }
 
     override fun showKeywords(keywords: List<String>) {
-        keywordsAdapter.keywords = keywords
+        keywordsAdapter.keywords.addAll(keywords)
         keywordsAdapter.notifyDataSetChanged()
 
     }
